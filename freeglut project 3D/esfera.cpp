@@ -35,6 +35,10 @@ void esfera::setAce(PuntoVector3D aux)
 {
 	ace = aux;
 }
+void esfera::setColor(PuntoVector3D aux)
+{
+	color = aux;
+}
 void esfera::update() {
 	pos.sumar(&dir);
 }

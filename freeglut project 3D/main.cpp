@@ -18,6 +18,7 @@ using namespace std;
 int WIDTH= 1000, HEIGHT= 1000;
 void creaParticulas(int num);
 void dibujaParticulas();
+float dameRandom(float max, float min);
 // Viewing frustum parameters
 GLdouble xRight=10, xLeft=-xRight, yTop=100, yBot=-yTop, N=1, F=1000;
 
@@ -101,7 +102,7 @@ void display(void) {
 		glEnd();
 		 		
 		// Drawing the scene	 		 
-		glColor3f(1.0, 1.0, 1.0);
+		glColor3f(1.0, 0.0, 0.0);
 		dibujaParticulas();
 
 //		glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
@@ -201,14 +202,13 @@ int main(int argc, char *argv[]){
 	return 0;
 }
 void creaParticulas(int num) {
-	int HI, LO;
-	HI = 10;
-	LO = -10;
+
 	for (size_t i = 0; i < num; i++)
 	{
 		esferas.push_back(esfera(1, 10, 10));
-		esferas[i].setPos(PuntoVector3D(LO + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (HI - LO))),  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (100 - 0))), LO + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (HI - LO))), 0));
-		esferas[i].setDir(PuntoVector3D(0, 1 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (1 -0.5))), 0, 1));
+		esferas[i].setPos(PuntoVector3D(dameRandom(10,-10),  dameRandom(100,0), dameRandom(10, -10), 0));
+		esferas[i].setDir(PuntoVector3D(0, dameRandom(1, 0.6), 0, 1));
+		esferas[i].setColor(PuntoVector3D(dameRandom(1, 0.5), dameRandom(0.5, 0), 0, 0));
 	}
 }
 void dibujaParticulas() {
@@ -217,6 +217,8 @@ void dibujaParticulas() {
 
 		glPushMatrix();
 		glTranslated(esferas[i].pos.getX(), esferas[i].pos.getY(), esferas[i].pos.getZ());
+		//glColor3f(dameRandom(1,0.3), dameRandom(0.8, 0.0), 0.0);
+		glColor3f(esferas[i].color.getX(), esferas[i].color.getY(), esferas[i].color.getZ());
 		esferas[i].dibuja();
 		esferas[i].update();
 		if (esferas[i].pos.getY() >= 100) {
@@ -225,4 +227,7 @@ void dibujaParticulas() {
 		glPopMatrix();
 	}
 	
+}
+float dameRandom(float max, float min) {
+	return min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
 }
