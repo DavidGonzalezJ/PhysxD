@@ -4,10 +4,12 @@
 #include <cstdlib>
 #include <ctime>
 #include <GL/freeglut.h>
-//#include <GL/glut.h>
+#include <windows.h>
 #include <vector>
 #include <iostream>
 #include "esfera.h"
+
+//#include <GL/glut.h>
 using namespace std;
 
 // Freeglut parameters
@@ -18,13 +20,15 @@ using namespace std;
 int WIDTH= 1000, HEIGHT= 1000;
 void creaParticulas(int num);
 void dibujaParticulas();
-float dameRandom(float max, float min);
+GLfloat dameRandom(GLfloat max, GLfloat min);
+
+bool pausa = false;
 // Viewing frustum parameters
-GLdouble xRight=10, xLeft=-xRight, yTop=100, yBot=-yTop, N=1, F=1000;
+GLdouble xRight=10, xLeft=-xRight, yTop=150, yBot=-yTop, N=1, F=2000;
 
 // Camera parameters
-GLdouble eyeX=500.0, eyeY=500.0, eyeZ=500.0;
-GLdouble lookX=0.0, lookY=0.0, lookZ=0.0;
+GLdouble eyeX=1000.0, eyeY=1000.0, eyeZ=1000.0;
+GLdouble lookX=0.0, lookY=100.0, lookZ=0.0;
 GLdouble upX=0, upY=1, upZ=0;
 
 // Scene variables
@@ -34,7 +38,7 @@ void buildSceneObjects() {
     angX=0.0f;
     angY=0.0f;
     angZ=0.0f;	
-	creaParticulas(500);
+	creaParticulas(1000);
 
 }
 
@@ -90,15 +94,15 @@ void display(void) {
 		glBegin( GL_LINES );			
 			glColor3f(1.0,0.0,0.0); 
 			glVertex3f(0, 0, 0);
-			glVertex3f(20, 0, 0);	     
+			glVertex3f(200, 0, 0);	     
 	 
 			glColor3f(0.0,1.0,0.0); 
 			glVertex3f(0, 0, 0);
-			glVertex3f(0, 20, 0);	 
+			glVertex3f(0, 200, 0);	 
 	 
 			glColor3f(0.0,0.0,1.0); 
 			glVertex3f(0, 0, 0);
-			glVertex3f(0, 0, 20);	     
+			glVertex3f(0, 0, 200);	     
 		glEnd();
 		 		
 		// Drawing the scene	 		 
@@ -110,6 +114,8 @@ void display(void) {
  
 	glFlush();
 	glutSwapBuffers();
+//	Sleep(10);
+	if (!pausa)
 	glutPostRedisplay();
 }
 
@@ -155,7 +161,7 @@ void key(unsigned char key, int x, int y){
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;  
-		case 'p':need_redisplay = !need_redisplay; break;
+		case 'p': pausa =!pausa; break; //parar el movimiento
 			
 	}
 
@@ -197,37 +203,34 @@ int main(int argc, char *argv[]){
 	glutMainLoop(); 
   
 	// We would never reach this point using classic glut
-	system("PAUSE"); 
+	//system("PAUSE"); 
    
 	return 0;
 }
 void creaParticulas(int num) {
 
-	for (size_t i = 0; i < num; i++)
+	for (int i = 0; i < num; i++)
 	{
 		esferas.push_back(esfera(1, 10, 10));
-		esferas[i].setPos(PuntoVector3D(dameRandom(10,-10),  dameRandom(100,0), dameRandom(10, -10), 0));
+		esferas[i].setPos(PuntoVector3D(dameRandom(30,-30),  dameRandom(200,0), dameRandom(30, -30), 0));
 		esferas[i].setDir(PuntoVector3D(0, dameRandom(1, 0.6), 0, 1));
 		esferas[i].setColor(PuntoVector3D(dameRandom(1, 0.5), dameRandom(0.5, 0), 0, 0));
 	}
 }
 void dibujaParticulas() {
+
 	for (size_t i = 0; i < esferas.size(); i++)
 	{
-
 		glPushMatrix();
 		glTranslated(esferas[i].pos.getX(), esferas[i].pos.getY(), esferas[i].pos.getZ());
-		//glColor3f(dameRandom(1,0.3), dameRandom(0.8, 0.0), 0.0);
 		glColor3f(esferas[i].color.getX(), esferas[i].color.getY(), esferas[i].color.getZ());
+		//glColor3f(dameRandom(1,0.3), dameRandom(0.8, 0.0), 0.0); // color random por frame (epilepsia)
 		esferas[i].dibuja();
 		esferas[i].update();
-		if (esferas[i].pos.getY() >= 100) {
-			esferas[i].setPos(PuntoVector3D(esferas[i].pos.getX(), 0, esferas[i].pos.getZ(), 0));
-		}
 		glPopMatrix();
 	}
 	
 }
-float dameRandom(float max, float min) {
-	return min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
+GLfloat dameRandom(GLfloat max, GLfloat min) {
+	return min + static_cast <GLfloat> (rand()) / (static_cast <GLfloat> (RAND_MAX / (max - min)));
 }
