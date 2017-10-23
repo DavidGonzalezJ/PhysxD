@@ -66,16 +66,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Objeto3D.cpp" />
     <ClCompile Include="particulas.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PuntoVector3D.cpp" />
-    <ClCompile Include="world.cpp" />
+    <ClCompile Include="Test1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objeto3D.h" />
     <ClInclude Include="particulas.h" />
     <ClInclude Include="PuntoVector3D.h" />
+    <ClInclude Include="Test1.h" />
     <ClInclude Include="world.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
