@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include "particulas.h"
+#include "Test1.h"
 
 //#include <GL/glut.h>
 using namespace std;
@@ -38,17 +39,21 @@ std::vector<particulas> esferas;
 GLfloat frecuencia= 10;
 GLfloat lastUpdate = 0;
 
+Test1 escena;
+
 
 void buildSceneObjects() {	 
     angX=0.0f;
     angY=0.0f;
     angZ=0.0f;	
-	creaParticulas(1000);
+	//creaParticulas(1000);
+	escena.creaParticulas(1000);
+
 
 }
 
 void initGL() {	 		 
-	glClearColor(0.6f,0.7f,0.8f,1.0);
+	glClearColor(0,0,0,1.0);
       
 	glEnable(GL_COLOR_MATERIAL);
 	glMaterialf(GL_FRONT, GL_SHININESS, 0.9f);
@@ -111,19 +116,19 @@ void display(void) {
 		glEnd();
 		 		
 		// Drawing the scene	 		 
-		glColor3f(1.0, 0.0, 0.0);
+		glColor3f(1.0, 1.0, 1.0);
 
 		
-		dibujaParticulas();
-
+	//	dibujaParticulas();
+		
+		escena.dibuja();
 //		glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
 	glPopMatrix();
  
 	glFlush();
 	glutSwapBuffers();
 //	Sleep(10);
-	if (!pausa)
-	glutPostRedisplay();
+	if (!pausa) glutPostRedisplay();
 }
 
 
@@ -168,7 +173,7 @@ void key(unsigned char key, int x, int y){
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;  
-		case 'p': pausa =!pausa; break; //parar el movimiento
+		case 'p': pausa = !pausa; break; //parar el movimiento
 			
 	}
 
@@ -210,7 +215,7 @@ int main(int argc, char *argv[]){
 	glutMainLoop(); 
   
 	// We would never reach this point using classic glut
-	//system("PAUSE"); 
+	system("PAUSE"); 
    
 	return 0;
 }
@@ -219,9 +224,9 @@ void creaParticulas(int num) {
 	for (int i = 0; i < num; i++)
 	{
 		esferas.push_back(particulas(1, 10, 10, PuntoVector3D(dameRandom(30, -30), dameRandom(250, 230), dameRandom(30, -30), 0)));
+		esferas[i].setColor(PuntoVector3D(dameRandom(1, 0.5), dameRandom(0.5, 0), 0, 0));
 		//esferas[i].setPos(PuntoVector3D(dameRandom(30,-30),  dameRandom(250,0), dameRandom(30, -30), 0));
 	//	esferas[i].setVel(PuntoVector3D(0, dameRandom(1, 0.6), 0, 1));
-		esferas[i].setColor(PuntoVector3D(dameRandom(1, 0.5), dameRandom(0.5, 0), 0, 0));
 	}
 }
 void dibujaParticulas() { 

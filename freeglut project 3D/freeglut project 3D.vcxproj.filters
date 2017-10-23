@@ -27,6 +27,9 @@
     <ClCompile Include="Test1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Objeto3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PuntoVector3D.h">
