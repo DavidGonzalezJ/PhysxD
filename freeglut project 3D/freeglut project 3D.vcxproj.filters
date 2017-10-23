@@ -18,18 +18,30 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="esfera.cpp">
+    <ClCompile Include="PuntoVector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PuntoVector3D.cpp">
+    <ClCompile Include="particulas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="world.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objeto3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="esfera.h">
+    <ClInclude Include="PuntoVector3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PuntoVector3D.h">
+    <ClInclude Include="particulas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="world.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objeto3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,11 +3,12 @@
 #include <gl/GLU.h>
 #include <cstdlib>
 #include <ctime>
+#include <stdio.h>
 #include <GL/freeglut.h>
 #include <windows.h>
 #include <vector>
 #include <iostream>
-#include "esfera.h"
+#include "particulas.h"
 
 //#include <GL/glut.h>
 using namespace std;
@@ -33,7 +34,11 @@ GLdouble upX=0, upY=1, upZ=0;
 
 // Scene variables
 GLfloat angX, angY, angZ; 
-std::vector<esfera> esferas;
+std::vector<particulas> esferas;
+GLfloat frecuencia= 10;
+GLfloat lastUpdate = 0;
+
+
 void buildSceneObjects() {	 
     angX=0.0f;
     angY=0.0f;
@@ -107,6 +112,8 @@ void display(void) {
 		 		
 		// Drawing the scene	 		 
 		glColor3f(1.0, 0.0, 0.0);
+
+		
 		dibujaParticulas();
 
 //		glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
@@ -211,14 +218,15 @@ void creaParticulas(int num) {
 
 	for (int i = 0; i < num; i++)
 	{
-		esferas.push_back(esfera(1, 10, 10));
-		esferas[i].setPos(PuntoVector3D(dameRandom(30,-30),  dameRandom(200,0), dameRandom(30, -30), 0));
-		esferas[i].setDir(PuntoVector3D(0, dameRandom(1, 0.6), 0, 1));
+		esferas.push_back(particulas(1, 10, 10, PuntoVector3D(dameRandom(30, -30), dameRandom(250, 230), dameRandom(30, -30), 0)));
+		//esferas[i].setPos(PuntoVector3D(dameRandom(30,-30),  dameRandom(250,0), dameRandom(30, -30), 0));
+	//	esferas[i].setVel(PuntoVector3D(0, dameRandom(1, 0.6), 0, 1));
 		esferas[i].setColor(PuntoVector3D(dameRandom(1, 0.5), dameRandom(0.5, 0), 0, 0));
 	}
 }
-void dibujaParticulas() {
-
+void dibujaParticulas() { 
+	GLfloat ticks = glutGet(GLUT_ELAPSED_TIME);
+	bool guachinchada = false;
 	for (size_t i = 0; i < esferas.size(); i++)
 	{
 		glPushMatrix();
@@ -226,9 +234,18 @@ void dibujaParticulas() {
 		glColor3f(esferas[i].color.getX(), esferas[i].color.getY(), esferas[i].color.getZ());
 		//glColor3f(dameRandom(1,0.3), dameRandom(0.8, 0.0), 0.0); // color random por frame (epilepsia)
 		esferas[i].dibuja();
-		esferas[i].update();
+
+		if (guachinchada || lastUpdate + frecuencia <= ticks){
+			esferas[i].update(ticks);
+			guachinchada = true;
+			lastUpdate = ticks;
+		}
 		glPopMatrix();
+		
 	}
+	
+		std::cout << ticks << "\n";
+
 	
 }
 GLfloat dameRandom(GLfloat max, GLfloat min) {
