@@ -47,7 +47,7 @@ void buildSceneObjects() {
     angY=0.0f;
     angZ=0.0f;	
 	//creaParticulas(1000);
-	escena.creaParticulas(1000);
+	escena.creaParticulas(100);
 
 
 }
@@ -215,7 +215,7 @@ int main(int argc, char *argv[]){
 	glutMainLoop(); 
   
 	// We would never reach this point using classic glut
-	system("PAUSE"); 
+
    
 	return 0;
 }

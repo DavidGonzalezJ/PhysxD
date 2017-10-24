@@ -17,6 +17,7 @@ void Test1::creaParticulas(int num) {
 	{
 		objetos[i] = new particulas(1, 10, 10, PuntoVector3D(world_->dameRandom(50, -50), world_->dameRandom(250, 0), world_->dameRandom(50, -50), 0));
 		objetos[i]->setColor(PuntoVector3D(world_->dameRandom(1, 0.5), world_->dameRandom(0.5, 0), 0, 0));
+		objetos[i]->setWorld(world_);
 		
 	}
 	
@@ -33,6 +34,7 @@ void Test1::dibuja() {
 		objetos[i]->update(ticks);
 			update = true;
 			lastTimeUpdate = ticks;
+		objetos[i]->aplicarFuerza(PuntoVector3D(world_->dameRandom(-4,4), 0, world_->dameRandom(-4, 4), 0));
 		objetos[i]->update(ticks);
 		}
 	}

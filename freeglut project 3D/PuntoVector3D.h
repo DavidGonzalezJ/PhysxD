@@ -14,11 +14,15 @@ public:
 	GLfloat getX();
 	GLfloat getY();
 	GLfloat getZ();
+	void setX(GLfloat _x) { x = _x; };
+	void setY(GLfloat _y) { y = _y; };
+	void setZ(GLfloat _z) { z = _z; };
 	bool esPunto();
 	bool esVector();
 	void escalar(GLfloat factor);
 	void normalizar();
 	void sumar(PuntoVector3D* pv);
+	void mult(GLfloat n) { x *= n; y *= n; z *= n;}
 	PuntoVector3D* clonar();
 	GLfloat productoEscalar(PuntoVector3D* vector);
 	PuntoVector3D* productoVectorial(PuntoVector3D* vector);

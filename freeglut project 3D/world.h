@@ -4,16 +4,16 @@
 class world 
 {
 public:
-	world() {};
+	world() { gravity = PuntoVector3D(0, 0, 0, 1); };
 	~world() {};
-	virtual GLfloat getGravity(){ return gravity; };
+	virtual PuntoVector3D getGravity(){ return gravity; };
 	virtual PuntoVector3D getWorldBox(){ return worldBox; };
 	GLfloat dameRandom(GLfloat max, GLfloat min) {
 		return min + static_cast <GLfloat> (rand()) / (static_cast <GLfloat> (RAND_MAX / (max - min)));
 	}
 	//vector<Objeto3D> getObjects(){ return objetos; };
 private:
-	GLfloat gravity = -9.81;
+	PuntoVector3D gravity;
 	PuntoVector3D worldBox;
 };
 

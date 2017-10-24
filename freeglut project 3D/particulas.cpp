@@ -16,8 +16,8 @@ particulas::particulas(int radio, int meridiano, int paralelo, PuntoVector3D pos
 	radio_ = radio;
 	meridiano_ = meridiano;
 	paralelo_ = paralelo;
+	acc = PuntoVector3D(0,0, 0, 1);
 	segundos_ = glutGet(GLUT_ELAPSED_TIME);
-
 }
 
 
@@ -38,18 +38,23 @@ void particulas::dibuja() {
 void particulas::update(GLfloat dt) {
 	dt -= segundos_;
 	dt /= 10000;
-	PuntoVector3D fuerza = computeForces();
-	PuntoVector3D aceleration = PuntoVector3D(fuerza.getX() / masa, fuerza.getY() / masa, fuerza.getZ() / masa,0);
-	vel.sumar(&PuntoVector3D(aceleration.getX() * dt, aceleration.getY() * dt, aceleration.getZ() * dt,0));
-	pos.sumar(&PuntoVector3D(vel.getX() * dt, vel.getY() * dt, vel.getZ() * dt, 0));
+	PuntoVector3D aceleration = computeForces();
+	aceleration.mult(dt);
+	vel.sumar(&aceleration);
+	PuntoVector3D Velocidad(vel);
+	Velocidad.mult(dt);
+	pos.sumar(&Velocidad);
 	//std::cout << vel.getY()<<"\n";
+	acc.mult(0);
+	vel.mult(0);
 	if (pos.getY() <= BOTTOM_DEADZONE) {
 		resetea();
 	}
 	
 }
 PuntoVector3D particulas::computeForces(){
-	return PuntoVector3D(0, masa * GRAVITY, 0, 0);
+	acc.sumar(&world->getGravity());
+	return acc;
 }
 void particulas::resetea(){
 	if (pos.getY() <= BOTTOM_DEADZONE) {
