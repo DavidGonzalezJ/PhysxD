@@ -10,6 +10,7 @@
 #include <iostream>
 #include "particulas.h"
 #include "Test1.h"
+#include "Test2.h"
 
 //#include <GL/glut.h>
 using namespace std;
@@ -20,8 +21,7 @@ using namespace std;
 
 // Viewport size
 int WIDTH= 1000, HEIGHT= 1000;
-void creaParticulas(int num);
-void dibujaParticulas();
+
 GLfloat dameRandom(GLfloat max, GLfloat min);
 
 bool pausa = false;
@@ -29,7 +29,7 @@ bool pausa = false;
 GLdouble xRight=10, xLeft=-xRight, yTop=150, yBot=-yTop, N=1, F=2000;
 
 // Camera parameters
-GLdouble eyeX=1000.0, eyeY=1000.0, eyeZ=1000.0;
+GLdouble eyeX=0, eyeY=0, eyeZ=2000.0;
 GLdouble lookX=0.0, lookY=100.0, lookZ=0.0;
 GLdouble upX=0, upY=1, upZ=0;
 
@@ -40,6 +40,7 @@ GLfloat frecuencia= 10;
 GLfloat lastUpdate = 0;
 
 Test1 escena;
+Test2 escena2;
 
 
 void buildSceneObjects() {	 
@@ -47,7 +48,8 @@ void buildSceneObjects() {
     angY=0.0f;
     angZ=0.0f;	
 	//creaParticulas(1000);
-	escena.creaParticulas(1000);
+	//escena.creaParticulas(1000);
+	escena2.creaParticulas(1000);
 
 
 }
@@ -61,7 +63,8 @@ void initGL() {
 	glEnable(GL_NORMALIZE);
 
 	buildSceneObjects();
-
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// Light0
 	glEnable(GL_LIGHTING);  
     glEnable(GL_LIGHT0);
@@ -121,7 +124,8 @@ void display(void) {
 		
 	//	dibujaParticulas();
 		
-		escena.dibuja();
+		//escena.dibuja();
+		escena2.dibuja();
 //		glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
 	glPopMatrix();
  
@@ -190,7 +194,7 @@ int main(int argc, char *argv[]){
 	glutInitWindowSize(WIDTH, HEIGHT);
 	glutInitWindowPosition (0, 0);
 	//glutInitWindowPosition (140, 140);
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInit(&argc, argv);
 
 	// Window construction
@@ -216,43 +220,10 @@ int main(int argc, char *argv[]){
   
 	// We would never reach this point using classic glut
 
-   
+	system("PAUSE");
 	return 0;
 }
-void creaParticulas(int num) {
 
-	for (int i = 0; i < num; i++)
-	{
-		esferas.push_back(particulas(1, 10, 10, PuntoVector3D(dameRandom(30, -30), dameRandom(250, 230), dameRandom(30, -30), 0)));
-		esferas[i].setColor(PuntoVector3D(dameRandom(1, 0.5), dameRandom(0.5, 0), 0, 0));
-		//esferas[i].setPos(PuntoVector3D(dameRandom(30,-30),  dameRandom(250,0), dameRandom(30, -30), 0));
-	//	esferas[i].setVel(PuntoVector3D(0, dameRandom(1, 0.6), 0, 1));
-	}
-}
-void dibujaParticulas() { 
-	GLfloat ticks = glutGet(GLUT_ELAPSED_TIME);
-	bool guachinchada = false;
-	for (size_t i = 0; i < esferas.size(); i++)
-	{
-		glPushMatrix();
-		glTranslated(esferas[i].pos.getX(), esferas[i].pos.getY(), esferas[i].pos.getZ());
-		glColor3f(esferas[i].color.getX(), esferas[i].color.getY(), esferas[i].color.getZ());
-		//glColor3f(dameRandom(1,0.3), dameRandom(0.8, 0.0), 0.0); // color random por frame (epilepsia)
-		esferas[i].dibuja();
-
-		if (guachinchada || lastUpdate + frecuencia <= ticks){
-			esferas[i].update(ticks);
-			guachinchada = true;
-			lastUpdate = ticks;
-		}
-		glPopMatrix();
-		
-	}
-	
-		std::cout << ticks << "\n";
-
-	
-}
 GLfloat dameRandom(GLfloat max, GLfloat min) {
 	return min + static_cast <GLfloat> (rand()) / (static_cast <GLfloat> (RAND_MAX / (max - min)));
 }

@@ -1,7 +1,7 @@
 #include "PuntoVector3D.h"
 
 
-PuntoVector3D::PuntoVector3D(GLfloat x, GLfloat y, GLfloat z, int pv) {
+PuntoVector3D::PuntoVector3D(GLfloat x, GLfloat y, GLfloat z, GLfloat pv) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -19,6 +19,9 @@ GLfloat PuntoVector3D::getY() {
 
 GLfloat PuntoVector3D::getZ() {
 	return z;
+}
+GLfloat PuntoVector3D::getA() {
+	return pv;
 }
 
 bool PuntoVector3D::esPunto() {

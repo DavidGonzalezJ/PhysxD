@@ -1,4 +1,4 @@
-#include "particulas.h"
+﻿#include "particulas.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include <GL/freeglut.h>
@@ -6,18 +6,17 @@
 #include <iostream>
 
 #define TOP_DEADZONE 200
-#define GRAVITY -9.81
 #define BOTTOM_DEADZONE 0
 
-particulas::particulas(int radio, int meridiano, int paralelo, PuntoVector3D pos_)
+particulas::particulas( PuntoVector3D pos_, GLfloat gravedad)
 {
 	pos = pos_;
 	posInicial = pos;
-	radio_ = radio;
-	meridiano_ = meridiano;
-	paralelo_ = paralelo;
 	acc = PuntoVector3D(0,0, 0, 1);
 	segundos_ = glutGet(GLUT_ELAPSED_TIME);
+	vida = world->dameRandom(100,90);
+	vidaAct = vida;
+	gravedad_ = gravedad;
 }
 
 
@@ -27,9 +26,11 @@ particulas::~particulas()
 void particulas::dibuja() {
 	if (activa) {
 		glPushMatrix();
+		
 		glTranslated(pos.getX(), pos.getY(), pos.getZ());
-		glColor3f(color.getX(), color.getY(), color.getZ());
-		glutSolidSphere(radio_, meridiano_, paralelo_);
+		glColor4f(color.getX(), color.getY(), color.getZ(),color.getA() );
+		//std::cout << vidaAct / vida << " !- - - - -! "<< (int)(color.getA() * 10) / 10.0 <<  " Cual es la puta diferencia" << "\n";//descomentar si quieres una bomba nucelar
+		glutSolidSphere(1,10,10);
 		glPopMatrix();
 	}
 }
@@ -38,22 +39,26 @@ void particulas::dibuja() {
 void particulas::update(GLfloat dt) {
 	dt -= segundos_;
 	dt /= 10000;
+
+	
+	
 	PuntoVector3D aceleration = computeForces();
+	
 	aceleration.mult(dt);
 	vel.sumar(&aceleration);
 	PuntoVector3D Velocidad(vel);
 	Velocidad.mult(dt);
 	pos.sumar(&Velocidad);
-	//std::cout << vel.getY()<<"\n";
 	acc.mult(0);
-	if (pos.getY() <= BOTTOM_DEADZONE) {
+	vidaAct --;
+	if (pos.getY() <= BOTTOM_DEADZONE || pos.getY() >= TOP_DEADZONE || vidaAct <= 0) {
 		//resetea();
 		setDestroy(true);
 	}
 	
 }
 PuntoVector3D particulas::computeForces(){
-	acc.sumar(&world->getGravity());
+	acc.sumar(&PuntoVector3D(0,gravedad_,0,0));
 	return acc;
 }
 void particulas::resetea(){

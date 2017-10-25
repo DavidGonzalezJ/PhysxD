@@ -3,11 +3,11 @@
 #include "particulas.h"
 #include "world.h"
 
-class Test1
+class Test2
 {
 public:
-	Test1();
-	~Test1();
+	Test2();
+	~Test2();
 	void creaParticulas(int num);
 	void dibuja();
 private:
@@ -15,9 +15,9 @@ private:
 	GLfloat lastTimeUpdate = 0;
 	GLfloat frecuencia = 10;
 	World* world_;
-	Objeto3D * fuego;
+	Objeto3D * fuente;
 	Objeto3D** objetos;
 	int numParticulas;
-	
+
 };
 

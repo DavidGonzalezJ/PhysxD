@@ -7,10 +7,12 @@ class Objeto3D {
 public:
 	Objeto3D(){};
 	~Objeto3D(){};
-	PuntoVector3D color;
 	PuntoVector3D pos;
 	PuntoVector3D vel;
 	PuntoVector3D acc;
+	PuntoVector3D color;
+	GLfloat vida;
+
 	virtual void dibuja() {}
 	virtual void update(GLfloat dt) {};
 
@@ -19,6 +21,7 @@ public:
 	void setVel(PuntoVector3D aux){vel = aux;}
 	void aplicarFuerza(PuntoVector3D aux) { acc.sumar(&aux); }
 	void setWorld(World* worlde) { world = worlde; }
+	GLfloat getVidaAct() { return vidaAct; };
 
 	void setColor(PuntoVector3D aux){color = aux;}
 	World* world;
@@ -34,6 +37,7 @@ public:
 	}
 
 protected:
+	GLfloat vidaAct;
 	bool _activa = true;
 	bool _eliminar = false;
 };

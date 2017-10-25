@@ -1,12 +1,12 @@
 #pragma once
 #include "Objeto3D.h"
 #include <vector>
-class Fuente :
+class Fuego :
 	public Objeto3D
 {
 public:
-	Fuente();
-	virtual ~Fuente();
+	Fuego();
+	virtual ~Fuego();
 	virtual void dibuja() {
 		for (auto &p : Vector) {
 			p->dibuja();
@@ -17,3 +17,4 @@ public:
 private:
 	std::vector<Objeto3D*> Vector;
 };
+

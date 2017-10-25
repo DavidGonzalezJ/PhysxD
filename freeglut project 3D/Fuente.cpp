@@ -15,11 +15,29 @@ Fuente::~Fuente()
 	}
 }
 
+void Fuente::update(GLfloat dt)
+{
+	for (size_t i = 0; i < Vector.size(); i++)
+	{
+		Vector[i]->setColor(PuntoVector3D(0,0.3, 0.6, (int)((Vector[i]->getVidaAct() / Vector[i]->vida) * 10) / 10.0));
+		Vector[i]->update(dt);
+		if (Vector[i]->getDestroy()) {
+			Vector.erase(Vector.begin() + i);
+		}
+	}
+	if (Vector.size() < 5000)
+		for (size_t i = 0; i < 50; i++)
+		{
+			Vector.push_back(creaParticula());
+
+		}
+}
+
 Objeto3D* Fuente::creaParticula()
 {
-	Objeto3D *p =  new particulas(1, 10, 10, PuntoVector3D(0, 1, 0, 0));
-	p->setColor(PuntoVector3D(world->dameRandom(1, 0.5), world->dameRandom(0.5, 0), 0, 0));
-	p->setVel(PuntoVector3D(world->dameRandom(5, -5), 20, world->dameRandom(5, -5), 1));
+	Objeto3D *p = new particulas(PuntoVector3D(0, 1, 0, 0));
+	p->setColor(PuntoVector3D(0,0.3,0.6,1));
+	p->setVel(PuntoVector3D(world->dameRandom(10,-10), 50, world->dameRandom(10, -10), 1));
 	p->setWorld(world);
 	return p;
 }

@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Tests">
+      <UniqueIdentifier>{eff10709-82db-47fe-b04c-89c4a9c5c3c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{0e619ebd-fea3-4b73-a57c-f3749882aa85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,14 +30,20 @@
     <ClCompile Include="particulas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Test1.cpp">
+    <ClCompile Include="Objeto3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Objeto3D.cpp">
+    <ClCompile Include="Fuego.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Fuente.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Test1.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Test2.cpp">
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,11 +59,17 @@
     <ClInclude Include="Objeto3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Test1.h">
+    <ClInclude Include="Fuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Fuente.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test1.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Test2.h">
+      <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
