@@ -10,8 +10,10 @@ public:
 
 	void resetea();
 	PuntoVector3D computeForces();
-	
+	bool isDead() { return !viva; }
 private:
+	bool viva = true;
+
 	int radio_, meridiano_, paralelo_, segundos_;
 	GLfloat masa=1;
 	PuntoVector3D posInicial;

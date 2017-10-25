@@ -11,9 +11,11 @@ public:
 	void creaParticulas(int num);
 	void dibuja();
 private:
+	Objeto3D* creaParticula();
 	GLfloat lastTimeUpdate = 0;
 	GLfloat frecuencia = 10;
-	world* world_;
+	World* world_;
+	Objeto3D * fuente;
 	Objeto3D** objetos;
 	int numParticulas;
 	

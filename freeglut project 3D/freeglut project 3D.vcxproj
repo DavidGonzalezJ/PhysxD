@@ -67,6 +67,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="Objeto3D.cpp" />
     <ClCompile Include="particulas.cpp" />
     <ClCompile Include="main.cpp" />
@@ -74,6 +75,7 @@
     <ClCompile Include="Test1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Fuente.h" />
     <ClInclude Include="Objeto3D.h" />
     <ClInclude Include="particulas.h" />
     <ClInclude Include="PuntoVector3D.h" />

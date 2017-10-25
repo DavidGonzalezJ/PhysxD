@@ -1,11 +1,11 @@
 #pragma once
 #include "PuntoVector3D.h"
-
-class world 
+#define GRAVITY -9.81f
+class World 
 {
 public:
-	world() { gravity = PuntoVector3D(0, 0, 0, 1); };
-	~world() {};
+	World() { gravity = PuntoVector3D(0, GRAVITY, 0, 1); };
+	~World() {};
 	virtual PuntoVector3D getGravity(){ return gravity; };
 	virtual PuntoVector3D getWorldBox(){ return worldBox; };
 	GLfloat dameRandom(GLfloat max, GLfloat min) {

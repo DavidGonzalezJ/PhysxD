@@ -46,9 +46,9 @@ void particulas::update(GLfloat dt) {
 	pos.sumar(&Velocidad);
 	//std::cout << vel.getY()<<"\n";
 	acc.mult(0);
-	vel.mult(0);
 	if (pos.getY() <= BOTTOM_DEADZONE) {
-		resetea();
+		//resetea();
+		setDestroy(true);
 	}
 	
 }

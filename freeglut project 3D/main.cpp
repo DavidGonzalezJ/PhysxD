@@ -47,7 +47,7 @@ void buildSceneObjects() {
     angY=0.0f;
     angZ=0.0f;	
 	//creaParticulas(1000);
-	escena.creaParticulas(100);
+	escena.creaParticulas(1000);
 
 
 }
