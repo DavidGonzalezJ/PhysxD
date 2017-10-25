@@ -9,8 +9,10 @@
 #include <vector>
 #include <iostream>
 #include "particulas.h"
+#include "Test0.h"
 #include "Test1.h"
 #include "Test2.h"
+
 
 //#include <GL/glut.h>
 using namespace std;
@@ -39,9 +41,11 @@ std::vector<particulas> esferas;
 GLfloat frecuencia= 10;
 GLfloat lastUpdate = 0;
 
-Test1 escena;
+Test0 escena0;
+Test1 escena1;
 Test2 escena2;
 
+int CONT = 0;
 
 void buildSceneObjects() {	 
     angX=0.0f;
@@ -121,11 +125,18 @@ void display(void) {
 		// Drawing the scene	 		 
 		glColor3f(1.0, 1.0, 1.0);
 
+		switch (CONT)
+		{
+		case 0: escena0.dibuja(); break;
+		case 1: escena1.dibuja(); break;
+		case 2: escena2.dibuja(); break;
+		default:
+			break;
+		}
+		//dibujaParticulas();
 		
-	//	dibujaParticulas();
 		
-		//escena.dibuja();
-		escena2.dibuja();
+		//escena2.dibuja();
 //		glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
 	glPopMatrix();
  
@@ -184,22 +195,20 @@ void key(unsigned char key, int x, int y){
 	if (need_redisplay)
 		glutPostRedisplay();
 }
-
-int main(int argc, char *argv[]){
-	cout<< "Starting console..." << endl;
+void creaVentana(int argc, char *argv[]){
 	srand(static_cast <unsigned> (time(0)));
 	int my_window; // my window's identifier
 
 	// Initialization
 	glutInitWindowSize(WIDTH, HEIGHT);
-	glutInitWindowPosition (0, 0);
+	glutInitWindowPosition(0, 0);
 	//glutInitWindowPosition (140, 140);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInit(&argc, argv);
 
 	// Window construction
 	my_window = glutCreateWindow("Freeglut 3D-project");
-    
+
 	// Callback registration
 	glutReshapeFunc(resize);
 	glutKeyboardFunc(key);
@@ -213,11 +222,18 @@ int main(int argc, char *argv[]){
 
 	// Classic glut's main loop can be stopped after X-closing the window,
 	// using the following freeglut's setting (*)
-	glutSetOption (GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION) ;
-    
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
+
 	// Classic glut's main loop can be stopped in freeglut using (*)
-	glutMainLoop(); 
-  
+	glutMainLoop();
+}
+int main(int argc, char *argv[]){
+	
+	creaVentana(argc, argv);
+	CONT++;
+	creaVentana(argc, argv);
+	CONT++;
+	creaVentana(argc, argv);
 	// We would never reach this point using classic glut
 
 	system("PAUSE");

@@ -20,7 +20,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -69,19 +69,23 @@
   <ItemGroup>
     <ClCompile Include="Fuego.cpp" />
     <ClCompile Include="Fuente.cpp" />
+    <ClCompile Include="LLuviaParticulas.cpp" />
     <ClCompile Include="Objeto3D.cpp" />
     <ClCompile Include="particulas.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PuntoVector3D.cpp" />
+    <ClCompile Include="Test0.cpp" />
     <ClCompile Include="Test1.cpp" />
     <ClCompile Include="Test2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fuego.h" />
     <ClInclude Include="Fuente.h" />
+    <ClInclude Include="LLuviaParticulas.h" />
     <ClInclude Include="Objeto3D.h" />
     <ClInclude Include="particulas.h" />
     <ClInclude Include="PuntoVector3D.h" />
+    <ClInclude Include="Test0.h" />
     <ClInclude Include="Test1.h" />
     <ClInclude Include="Test2.h" />
     <ClInclude Include="world.h" />
