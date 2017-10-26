@@ -27,7 +27,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -68,7 +68,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Explosion.cpp" />
-    <ClCompile Include="FireWork.cpp" />
+    <ClCompile Include="FireWorks.cpp" />
     <ClCompile Include="Fuego.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="LLuviaParticulas.cpp" />
@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Explosion.h" />
-    <ClInclude Include="FireWork.h" />
+    <ClInclude Include="FireWorks.h" />
     <ClInclude Include="Fuego.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="LLuviaParticulas.h" />

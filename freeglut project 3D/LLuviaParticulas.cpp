@@ -33,7 +33,7 @@ void LLuviaParticulas::update(GLfloat dt)
 
 Objeto3D* LLuviaParticulas::creaParticula()
 {
-	Objeto3D *p = new particulas(PuntoVector3D(world->dameRandom(55, -55), 180, world->dameRandom(55, -55), 0), -0.8);
+	Objeto3D *p = new particulas(PuntoVector3D(world->dameRandom(55, -55), 180, world->dameRandom(55, -55), 0), -0.8, 200);
 	p->setColor(PuntoVector3D(1, 1, 1, 1));
 	p->setVel(PuntoVector3D(0, 0, 0, 1));
 	p->setWorld(world);

@@ -16,7 +16,6 @@
 #include "Test4.h"
 
 
-
 //#include <GL/glut.h>
 using namespace std;
 
@@ -31,11 +30,11 @@ GLfloat dameRandom(GLfloat max, GLfloat min);
 
 bool pausa = false;
 // Viewing frustum parameters
-GLdouble xRight=10, xLeft=-xRight, yTop=150, yBot=-yTop, N=1, F=2000;
+GLdouble xRight=10, xLeft=-xRight, yTop=250, yBot=-30, N=1, F=2000;
 
 // Camera parameters
 GLdouble eyeX=0, eyeY=0, eyeZ=2000.0;
-GLdouble lookX=0.0, lookY=100.0, lookZ=0.0;
+GLdouble lookX=0.0, lookY=10, lookZ=0.0;
 GLdouble upX=0, upY=1, upZ=0;
 
 // Scene variables
@@ -50,7 +49,6 @@ Test2 escena2;
 Test3 escena3;
 Test4 escena4;
 
-
 int numEscenas = 5;
 int CONT = 0;
 
@@ -60,7 +58,7 @@ void buildSceneObjects() {
     angZ=0.0f;	
 	//creaParticulas(1000);
 	//escena.creaParticulas(1000);
-	escena2.creaParticulas(1000);
+	//escena2.creaParticulas(1000);
 
 
 }

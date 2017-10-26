@@ -15,8 +15,12 @@ private:
 	GLfloat lastTimeUpdate = 0;
 	GLfloat frecuencia = 10;
 	World* world_;
-	Objeto3D * firework;
+	Objeto3D * _explosion, *fireworks;
 	Objeto3D** objetos;
 	int numParticulas;
+	bool done;
+	PuntoVector3D posAux;
 
 };
+
+

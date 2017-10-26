@@ -19,6 +19,7 @@ public:
 
 	void setPos(PuntoVector3D aux){pos = aux;}
 	void setVel(PuntoVector3D aux){vel = aux;}
+	virtual void setSize(int tam){};
 	void aplicarFuerza(PuntoVector3D aux) { acc.sumar(&aux); }
 	void setWorld(World* worlde) { world = worlde; }
 	GLfloat getVidaAct() { return vidaAct; };
@@ -40,6 +41,7 @@ public:
 	GLfloat vidaAct;
 
 protected:
+	int size;
 	bool _activa = true;
 	bool _eliminar = false;
 };

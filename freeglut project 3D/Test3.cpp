@@ -4,7 +4,7 @@
 Test3::Test3()
 {
 	world_ = new World();
-	_explosion = new Explosion(PuntoVector3D(0,60,0,1));
+	_explosion = new Explosion(PuntoVector3D(0,120,0,1));
 	_explosion->setWorld(world_);
 }
 

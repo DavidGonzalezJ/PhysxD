@@ -8,15 +8,16 @@
 #define TOP_DEADZONE 200
 #define BOTTOM_DEADZONE 0
 
-particulas::particulas( PuntoVector3D pos_, GLfloat gravedad)
+particulas::particulas(PuntoVector3D pos_, GLfloat gravedad, GLfloat maxVida, GLfloat minVida)
 {
 	pos = pos_;
 	posInicial = pos;
 	acc = PuntoVector3D(0,0, 0, 1);
 	segundos_ = glutGet(GLUT_ELAPSED_TIME);
-	vida = world->dameRandom(100,90);
+	vida = world->dameRandom(maxVida, minVida);
 	vidaAct = vida;
 	gravedad_ = gravedad;
+	size = 1;
 }
 
 
@@ -30,7 +31,7 @@ void particulas::dibuja() {
 		glTranslated(pos.getX(), pos.getY(), pos.getZ());
 		glColor4f(color.getX(), color.getY(), color.getZ(),color.getA() );
 		//std::cout << vidaAct / vida << " !- - - - -! "<< (int)(color.getA() * 10) / 10.0 <<  " Cual es la puta diferencia" << "\n";//descomentar si quieres una bomba nucelar
-		glutSolidSphere(1,5,5);
+		glutSolidSphere(size,5,5);
 		glPopMatrix();
 	}
 }
