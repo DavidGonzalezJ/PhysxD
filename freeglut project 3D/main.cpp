@@ -12,6 +12,7 @@
 #include "Test0.h"
 #include "Test1.h"
 #include "Test2.h"
+#include "Test3.h"
 
 
 //#include <GL/glut.h>
@@ -44,6 +45,7 @@ GLfloat lastUpdate = 0;
 Test0 escena0;
 Test1 escena1;
 Test2 escena2;
+Test3 escena3;
 
 int CONT = 0;
 
@@ -130,6 +132,7 @@ void display(void) {
 		case 0: escena0.dibuja(); break;
 		case 1: escena1.dibuja(); break;
 		case 2: escena2.dibuja(); break;
+		case 3: escena3.dibuja(); break;
 		default:
 			break;
 		}
@@ -229,6 +232,8 @@ void creaVentana(int argc, char *argv[]){
 }
 int main(int argc, char *argv[]){
 	
+	creaVentana(argc, argv);
+	CONT++;
 	creaVentana(argc, argv);
 	CONT++;
 	creaVentana(argc, argv);

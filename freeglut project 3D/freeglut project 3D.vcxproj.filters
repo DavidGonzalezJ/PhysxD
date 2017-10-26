@@ -51,6 +51,12 @@
     <ClCompile Include="LLuviaParticulas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Test3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PuntoVector3D.h">
@@ -81,6 +87,12 @@
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
     <ClInclude Include="LLuviaParticulas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -67,6 +67,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Fuego.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="LLuviaParticulas.cpp" />
@@ -77,8 +78,10 @@
     <ClCompile Include="Test0.cpp" />
     <ClCompile Include="Test1.cpp" />
     <ClCompile Include="Test2.cpp" />
+    <ClCompile Include="Test3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="Fuego.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="LLuviaParticulas.h" />
@@ -88,6 +91,7 @@
     <ClInclude Include="Test0.h" />
     <ClInclude Include="Test1.h" />
     <ClInclude Include="Test2.h" />
+    <ClInclude Include="Test3.h" />
     <ClInclude Include="world.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
