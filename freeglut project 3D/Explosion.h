@@ -14,7 +14,7 @@ public:
 	virtual void update(GLfloat dt);
 	Objeto3D* creaParticula();
 	void reiniciarEscena(){
-		for (size_t i = 0; i < 500; i++)
+		for (size_t i = 0; i < 1000; i++)
 		{
 			Vector.push_back(creaParticula());
 		}

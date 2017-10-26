@@ -1,5 +1,6 @@
 #pragma once
 #include "PuntoVector3D.h"
+#include <math.h>
 #define GRAVITY -9.81f
 class World 
 {
@@ -10,6 +11,17 @@ public:
 	virtual PuntoVector3D getWorldBox(){ return worldBox; };
 	GLfloat dameRandom(GLfloat max, GLfloat min) {
 		return min + static_cast <GLfloat> (rand()) / (static_cast <GLfloat> (RAND_MAX / (max - min)));
+	}
+	PuntoVector3D DameVectorAleatorio(GLfloat magnitud) {
+		PuntoVector3D v;
+		GLfloat phi = dameRandom(3.1415f, 0.0f);
+		GLfloat cosTheta = dameRandom(1, -1);
+
+		GLfloat theta = acosf(cosTheta);
+		GLfloat x = sinf(theta)*cosf(phi), y = sinf(theta)*sinf(phi), z = cosf(theta);
+		v.setVector(x, y, z);
+		v.mult(magnitud);
+		return v;
 	}
 	//vector<Objeto3D> getObjects(){ return objetos; };
 private:

@@ -4,6 +4,7 @@
 
 Fuego::Fuego()
 {
+	Vector.reserve(5000);
 }
 
 

@@ -47,6 +47,7 @@ Test1 escena1;
 Test2 escena2;
 Test3 escena3;
 
+int numEscenas = 4;
 int CONT = 0;
 
 void buildSceneObjects() {	 
@@ -232,13 +233,12 @@ void creaVentana(int argc, char *argv[]){
 }
 int main(int argc, char *argv[]){
 	
-	creaVentana(argc, argv);
-	CONT++;
-	creaVentana(argc, argv);
-	CONT++;
-	creaVentana(argc, argv);
-	CONT++;
-	creaVentana(argc, argv);
+	do{
+		creaVentana(argc, argv);
+		CONT++;
+
+	} while (CONT < numEscenas);
+
 	// We would never reach this point using classic glut
 
 	system("PAUSE");
