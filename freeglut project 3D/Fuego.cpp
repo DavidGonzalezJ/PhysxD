@@ -27,7 +27,7 @@ void Fuego::update(GLfloat dt)
 			Vector.erase(Vector.begin() + i);
 		}
 	}
-	if (Vector.size() <5000)
+	if (Vector.size() <10000)
 		for (size_t i = 0; i < 50; i++)
 		{
 			Vector.push_back(creaParticula());
@@ -39,7 +39,7 @@ void Fuego::update(GLfloat dt)
 
 Objeto3D* Fuego::creaParticula()
 {
-	Objeto3D *p =  new particulas( PuntoVector3D(world->dameRandom(15,-15), 1, world->dameRandom(15, -15), 0),0);
+	Objeto3D *p =  new particulas( PuntoVector3D(world->dameRandom(15,-15), 1, world->dameRandom(15, -15), 0),0,150,100);
 	p->setVel(PuntoVector3D(world->dameRandom(2, -2), world->dameRandom(10,5), world->dameRandom(2, -2), 1));
 	p->setWorld(world);
 	return p;

@@ -195,7 +195,8 @@ void key(unsigned char key, int x, int y){
 		case 's': angY=angY+5; break;
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
-		case 'c': angZ=angZ-5; break;  
+		case 'c': angZ=angZ-5; break; 
+		case 9: CONT++; CONT%=numEscenas; break;
 		case 'p': pausa = !pausa; break; //parar el movimiento
 			
 	}
