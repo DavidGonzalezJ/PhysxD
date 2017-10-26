@@ -13,6 +13,8 @@
 #include "Test1.h"
 #include "Test2.h"
 #include "Test3.h"
+#include "Test4.h"
+
 
 
 //#include <GL/glut.h>
@@ -46,8 +48,10 @@ Test0 escena0;
 Test1 escena1;
 Test2 escena2;
 Test3 escena3;
+Test4 escena4;
 
-int numEscenas = 4;
+
+int numEscenas = 5;
 int CONT = 0;
 
 void buildSceneObjects() {	 
@@ -134,6 +138,8 @@ void display(void) {
 		case 1: escena1.dibuja(); break;
 		case 2: escena2.dibuja(); break;
 		case 3: escena3.dibuja(); break;
+		case 4: escena4.dibuja(); break;
+
 		default:
 			break;
 		}
@@ -241,7 +247,7 @@ int main(int argc, char *argv[]){
 
 	// We would never reach this point using classic glut
 
-	system("PAUSE");
+	
 	return 0;
 }
 

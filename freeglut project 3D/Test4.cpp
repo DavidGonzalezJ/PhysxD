@@ -1,34 +1,33 @@
-#include "Test3.h"
-#include "Explosion.h"
+#include "Test4.h"
+#include "FireWork.h"
 
-Test3::Test3()
+
+Test4::Test4()
 {
 	world_ = new World();
-	_explosion = new Explosion(PuntoVector3D(0,60,0,1));
-	_explosion->setWorld(world_);
+	firework = new FireWork();
+	firework->setWorld(world_);
 }
 
 
-Test3::~Test3()
+Test4::~Test4()
 {
 }
 
-void Test3::creaParticulas(int num) {
+void Test4::creaParticulas(int num) {
 }
-void Test3::dibuja() {
+void Test4::dibuja() {
 	GLfloat ticks = glutGet(GLUT_ELAPSED_TIME);
 	bool update = false;
-	_explosion->dibuja();
+	firework->dibuja();
 
 	if (update || lastTimeUpdate + frecuencia <= ticks) {
-		_explosion->update(ticks);
-		if (_explosion->getVidaAct() ==0){
-			_explosion->reiniciar();
-		}
+		firework->update(ticks);
+
 	}
 }
 
-Objeto3D* Test3::creaParticula()
+Objeto3D* Test4::creaParticula()
 {
 	Objeto3D* p = new particulas(PuntoVector3D(0, 40, 0, 0));
 	p->setColor(PuntoVector3D(world_->dameRandom(1, 0.5), world_->dameRandom(0.5, 0), 0, 0));

@@ -36,8 +36,10 @@ public:
 		return this==&obj;
 	}
 
-protected:
+	virtual void reiniciar(){};
 	GLfloat vidaAct;
+
+protected:
 	bool _activa = true;
 	bool _eliminar = false;
 };
