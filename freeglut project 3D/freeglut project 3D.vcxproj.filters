@@ -63,6 +63,9 @@
     <ClCompile Include="FireWorks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RBody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PuntoVector3D.h">
@@ -105,6 +108,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FireWorks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RBody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
