@@ -76,12 +76,38 @@ void RBody::CalculaTensorInercia(float deltaTime){
 	tensorInercia[2][2] = Izz;
 }
 
-void RBody::update(float deltaTime, PuntoVector3D fuerzas = PuntoVector3D(0.0f, 9.81f, 0.0f,0)){
+void RBody::update(float deltaTime, PuntoVector3D fuerzas){
 	time += deltaTime;
 	delete sumFuerzas;
 	sumFuerzas = fuerzas.clonar();
 
-	fuerzas.mult(deltaTime);
+	PuntoVector3D* aux = vel.clonar();
+
+	aux->escalar(deltaTime);
+	pos.sumar(aux);
+	delete aux;
+
+	vector_3 a(velAngular->getX(), velAngular->getY(), velAngular->getZ());
+	
+
+	orientation->operator+=(deltaTime *
+		matrix_3x3(a, matrix_3x3::SkewSymmetric) *
+		*(orientation));
+
+	sumFuerzas->escalar(deltaTime*(1 / masa));
+	velCM->setVector(sumFuerzas->getX(),sumFuerzas->getY(), sumFuerzas->getX());
+
+	/*Target->SetAngularMomentum(Source->GetAngularMomentum() +
+		DeltaTime * Source->GetTorque());*/
+
+	matrix_3x3 m = Target->GetOrientation();
+	OrthonormalizeOrientation(m);
+	Target->SetOrientation(m);
+
+	//orientation[0]->setX(tensorInercia[][]velAngular->getX())
+
+
+	/*fuerzas.mult(deltaTime);
 	vel.sumar(&fuerzas);
 
 	CalculaPos(deltaTime);
@@ -91,7 +117,7 @@ void RBody::update(float deltaTime, PuntoVector3D fuerzas = PuntoVector3D(0.0f, 
 	PuntoVector3D* aux = centroGravedad->clonar();
 	aux->escalar(-1);
 	correctedPos.sumar(aux);
-	delete aux;
+	delete aux;*/
 
 	CalculaTensorInercia(deltaTime);
 }

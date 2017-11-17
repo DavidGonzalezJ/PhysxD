@@ -2,6 +2,7 @@
 #include "Objeto3D.h"
 #include "Quaternion.h"
 #include <vector>
+#include "Lib\MATH3D.H"
 
 class RBody :
 	public Objeto3D
@@ -18,8 +19,9 @@ private:
 	PuntoVector3D* velAngular;
 	PuntoVector3D* centroGravedad;
 	PuntoVector3D* sumFuerzas;
-	Quaternion* orientation;
+	matrix_3x3* orientation;
 	PuntoVector3D correctedPos;
+	PuntoVector3D* velCM;
 	std::vector<std::vector<float>> tensorInercia;
 	float masa;
 	PuntoVector3D* calculak(PuntoVector3D* x, PuntoVector3D* v, float deltaTime);
