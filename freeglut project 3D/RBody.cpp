@@ -115,10 +115,6 @@ void RBody::update(float deltaTime, PuntoVector3D fuerzas){
 	auxAng = inverseWorldInertiaTensor * vector_3(angularMomentum->getX(),angularMomentum->getY(), angularMomentum->getZ());
 	velAngular = new PuntoVector3D(auxAng.GetX(), auxAng.GetY(), auxAng.GetZ(),0);
 
-	//movemos el objeto
-	this->
-
-
 }
 
 PuntoVector3D* RBody::calculak(PuntoVector3D* x, PuntoVector3D* v, float deltaTime){
@@ -137,4 +133,19 @@ PuntoVector3D* RBody::calculak(PuntoVector3D* x, PuntoVector3D* v, float deltaTi
 
 	delete aux; delete aux3;
 	return aux;
+}
+
+void RBody::dibuja(){
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glTranslatef(pos.getX(),pos.getY(), pos.getZ());
+	double x = 0;
+	//falta trasladar la rotacion aqui
+	glRotated(x, 1, 0, 0);
+	glRotated(x, 0, 1, 0);
+	glRotated(x, 0, 0, 1);
+
+	glutSolidCube(5);
+
+	glPopMatrix();
 }

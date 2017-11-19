@@ -11,6 +11,7 @@ public:
 	RBody(float masa, float tam);
 	virtual ~RBody();
 	void update(float deltaTime, PuntoVector3D fuerzas = PuntoVector3D(0.0f, 9.81f, 0.0f, 0));
+	virtual void dibuja();
 private:
 	long float time; // tiempo desde que se creo el objeto
 	int pasos; // numero de pasos que realiza el metodo de integracion
