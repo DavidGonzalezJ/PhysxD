@@ -83,43 +83,42 @@ void RBody::update(float deltaTime, PuntoVector3D fuerzas){
 
 	PuntoVector3D* aux = vel.clonar();
 
+	//Actualiza posicion
 	aux->escalar(deltaTime);
 	pos.sumar(aux);
 	delete aux;
 
+	//Actualiza orientacion
+	// Velocidad angular es 0 no podemos aplicar fuerzas directamenteasi que no hay necesidad de modificarla.
 	vector_3 a(velAngular->getX(), velAngular->getY(), velAngular->getZ());
-	
-
 	orientation->operator+=(deltaTime *
 		matrix_3x3(a, matrix_3x3::SkewSymmetric) *
 		*(orientation));
+	OrthonormalizeOrientation(*orientation);
 
+	//Actualiza velocidad de centro de masas
 	sumFuerzas->escalar(deltaTime*(1 / masa));
 	velCM->setVector(sumFuerzas->getX(),sumFuerzas->getY(), sumFuerzas->getX());
 
-	/*Target->SetAngularMomentum(Source->GetAngularMomentum() +
-		DeltaTime * Source->GetTorque());*/
-
-	matrix_3x3 m = Target->GetOrientation();
-	OrthonormalizeOrientation(m);
-	Target->SetOrientation(m);
-
-	//orientation[0]->setX(tensorInercia[][]velAngular->getX())
-
-
-	/*fuerzas.mult(deltaTime);
-	vel.sumar(&fuerzas);
-
-	CalculaPos(deltaTime);
-	centroGravedad = pos.clonar(); // pendiente de meter objetos dependientes dentro del rigid body para darle formas complejas
-	correctedPos = *(pos.clonar());
-
-	PuntoVector3D* aux = centroGravedad->clonar();
-	aux->escalar(-1);
-	correctedPos.sumar(aux);
-	delete aux;*/
+	//Actualiza momento angular
+	// El torque vale 0, si quisieramos actualizarlo para poder aplicar mas fuerzas que la gravedad habría que calcularlo antes de todo, y el metodo deberia recibir un vector
+	//con todas las fuerzas para calcular el torque
+	angularMomentum->setVector(angularMomentum->getX() + deltaTime * torque->getX(), angularMomentum->getY() + deltaTime * torque->getY(), angularMomentum->getZ()+ deltaTime * torque->getZ());
 
 	CalculaTensorInercia(deltaTime);
+
+	// compute auxiliary quantities
+
+	inverseWorldInertiaTensor = *orientation * inverseBodyInertiaTensor * Transpose(*orientation);
+
+	vector_3 auxAng;
+	auxAng = inverseWorldInertiaTensor * vector_3(angularMomentum->getX(),angularMomentum->getY(), angularMomentum->getZ());
+	velAngular = new PuntoVector3D(auxAng.GetX(), auxAng.GetY(), auxAng.GetZ(),0);
+
+	//movemos el objeto
+	this->
+
+
 }
 
 PuntoVector3D* RBody::calculak(PuntoVector3D* x, PuntoVector3D* v, float deltaTime){

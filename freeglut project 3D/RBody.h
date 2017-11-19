@@ -20,8 +20,14 @@ private:
 	PuntoVector3D* centroGravedad;
 	PuntoVector3D* sumFuerzas;
 	matrix_3x3* orientation;
-	PuntoVector3D correctedPos;
 	PuntoVector3D* velCM;
+	PuntoVector3D* angularMomentum;
+	PuntoVector3D* torque;
+	matrix_3x3 inverseWorldInertiaTensor;
+	matrix_3x3 inverseBodyInertiaTensor;
+
+
+	PuntoVector3D correctedPos;
 	std::vector<std::vector<float>> tensorInercia;
 	float masa;
 	PuntoVector3D* calculak(PuntoVector3D* x, PuntoVector3D* v, float deltaTime);
