@@ -69,6 +69,18 @@
     <ClCompile Include="Lib\MATH3D.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Malla.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cara.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VerticeNormal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Test5.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PuntoVector3D.h">
@@ -121,6 +133,18 @@
     </ClInclude>
     <ClInclude Include="Lib\MATH3D.H">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Malla.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cara.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VerticeNormal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test5.h">
+      <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

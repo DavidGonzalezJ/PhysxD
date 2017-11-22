@@ -1,5 +1,5 @@
 #include "RBody.h"
-
+#include <iostream>
 
 RBody::RBody(float masa, float tam) : time(0), pasos(10)
 {
@@ -12,6 +12,93 @@ RBody::RBody(float masa, float tam) : time(0), pasos(10)
 			tensorInercia[i][j] = 1;
 		}
 	}
+
+	inverseBodyInertiaTensor = matrix_3x3();
+	inverseWorldInertiaTensor = matrix_3x3();
+	velAngular = new PuntoVector3D();
+	sumFuerzas = new PuntoVector3D();
+	centroGravedad = new PuntoVector3D();
+	velCM = new PuntoVector3D();
+	angularMomentum = new PuntoVector3D();
+	torque = new PuntoVector3D();
+
+	pos.setY(200);
+
+	tam_ = tam;
+	modo = true;
+
+	numeroVertices = 8;
+	vertice = new PuntoVector3D*[numeroVertices];
+	numeroNormales = 6;
+	normal = new PuntoVector3D*[numeroNormales];
+	numeroCaras = 6;
+	cara = new Cara*[numeroCaras];
+
+
+	// Vértices  
+	vertice[0] = new PuntoVector3D(-tam_ / 2, -tam_ / 2, tam_ / 2, 1);
+	vertice[1] = new PuntoVector3D(tam_ / 2, -tam_ / 2, tam_ / 2, 1);
+	vertice[2] = new PuntoVector3D(tam_ / 2, tam_ / 2, tam_ / 2, 1);
+	vertice[3] = new PuntoVector3D(-tam_ / 2, tam_ / 2, tam_ / 2, 1);
+
+	vertice[4] = new PuntoVector3D(-tam_ / 2, -tam_ / 2, -tam_ / 2, 1);
+	vertice[5] = new PuntoVector3D(tam_ / 2, -tam_ / 2, -tam_ / 2, 1);
+	vertice[6] = new PuntoVector3D(tam_ / 2, tam_ / 2, -tam_ / 2, 1);
+	vertice[7] = new PuntoVector3D(-tam_ / 2, tam_ / 2, -tam_ / 2, 1);
+
+	// Normales  
+	normal[0] = new PuntoVector3D(0.0f, 0.0f, 1.0f, 0);
+	normal[1] = new PuntoVector3D(1.0f, 0.0f, 0.0f, 0);
+	normal[2] = new PuntoVector3D(0.0f, 0.0f, -1.0f, 0);
+	normal[3] = new PuntoVector3D(-1.0f, 0.0f, 0.0f, 0);
+	normal[4] = new PuntoVector3D(0.0f, 1.0f, 0.0f, 0);
+	normal[5] = new PuntoVector3D(0.0f, -1.0f, 0.0f, 0);
+
+	// Caras
+	VerticeNormal** aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(0, 0);
+	aVN[1] = new VerticeNormal(1, 0);
+	aVN[2] = new VerticeNormal(2, 0);
+	aVN[3] = new VerticeNormal(3, 0);
+	cara[0] = new Cara(4, aVN);
+
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(1, 1);
+	aVN[1] = new VerticeNormal(5, 1);
+	aVN[2] = new VerticeNormal(6, 1);
+	aVN[3] = new VerticeNormal(2, 1);
+	cara[1] = new Cara(4, aVN);
+
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(5, 2);
+	aVN[1] = new VerticeNormal(4, 2);
+	aVN[2] = new VerticeNormal(7, 2);
+	aVN[3] = new VerticeNormal(6, 2);
+	cara[2] = new Cara(4, aVN);
+
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(4, 3);
+	aVN[1] = new VerticeNormal(0, 3);
+	aVN[2] = new VerticeNormal(3, 3);
+	aVN[3] = new VerticeNormal(7, 3);
+	cara[3] = new Cara(4, aVN);
+
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(2, 4);
+	aVN[1] = new VerticeNormal(6, 4);
+	aVN[2] = new VerticeNormal(7, 4);
+	aVN[3] = new VerticeNormal(3, 4);
+	cara[4] = new Cara(4, aVN);
+
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(0, 5);
+	aVN[1] = new VerticeNormal(1, 5);
+	aVN[2] = new VerticeNormal(5, 5);
+	aVN[3] = new VerticeNormal(4, 5);
+	cara[5] = new Cara(4, aVN);
+
+	orientation = new matrix_3x3();
+
 }
 
 
@@ -78,15 +165,15 @@ void RBody::CalculaTensorInercia(float deltaTime){
 
 void RBody::update(float deltaTime, PuntoVector3D fuerzas){
 	time += deltaTime;
-	delete sumFuerzas;
+	//delete sumFuerzas;
 	sumFuerzas = fuerzas.clonar();
 
 	PuntoVector3D* aux = vel.clonar();
 
 	//Actualiza posicion
-	aux->escalar(deltaTime);
-	pos.sumar(aux);
-	delete aux;
+	sumFuerzas->escalar(time);
+	pos.sumar(sumFuerzas);
+	//delete aux;
 
 	//Actualiza orientacion
 	// Velocidad angular es 0 no podemos aplicar fuerzas directamenteasi que no hay necesidad de modificarla.
@@ -97,8 +184,10 @@ void RBody::update(float deltaTime, PuntoVector3D fuerzas){
 	OrthonormalizeOrientation(*orientation);
 
 	//Actualiza velocidad de centro de masas
-	sumFuerzas->escalar(deltaTime*(1 / masa));
-	velCM->setVector(sumFuerzas->getX(),sumFuerzas->getY(), sumFuerzas->getX());
+	//sumFuerzas->escalar(deltaTime*(1 / masa));
+	velCM->setVector(velCM->getX() + deltaTime*(1 / masa)*sumFuerzas->getX(),
+		velCM->getY() + deltaTime*(1 / masa)*sumFuerzas->getY(),
+		velCM->getZ() + deltaTime*(1 / masa)*sumFuerzas->getZ());
 
 	//Actualiza momento angular
 	// El torque vale 0, si quisieramos actualizarlo para poder aplicar mas fuerzas que la gravedad habría que calcularlo antes de todo, y el metodo deberia recibir un vector
@@ -136,16 +225,47 @@ PuntoVector3D* RBody::calculak(PuntoVector3D* x, PuntoVector3D* v, float deltaTi
 }
 
 void RBody::dibuja(){
+	// Cargamos la matriz afin
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
-	glTranslatef(pos.getX(),pos.getY(), pos.getZ());
-	double x = 0;
-	//falta trasladar la rotacion aqui
-	glRotated(x, 1, 0, 0);
-	glRotated(x, 0, 1, 0);
-	glRotated(x, 0, 0, 1);
 
-	glutSolidCube(5);
+	float m[16];
 
+	m[0] = orientation->GetElement(0,0);
+	m[1] = orientation->GetElement(1, 0);
+	m[2] = orientation->GetElement(2, 0);
+	m[3] = 0;
+	m[4] = orientation->GetElement(0, 1);
+	m[5] = orientation->GetElement(1, 1);
+	m[6] = orientation->GetElement(2, 1);
+	m[7] = 0;
+	m[8] = orientation->GetElement(0, 2);
+	m[9] = orientation->GetElement(1, 2);
+	m[10] = orientation->GetElement(2, 2);
+	m[11] = 0;
+	m[12] = pos.getX();
+	m[13] = pos.getY();
+	m[14] = pos.getZ();
+	m[15] = 1;
+
+	CreateOpenGLTransform(orientation, CM, m);
+	std::cout << pos.getX() << " " <<  pos.getY() << " " << pos.getZ() << "\n";
+/*	glPushMatrix();
+	glMultMatrixf(m);*/
+	// Dibujamos la malla
+	for (int i = 0; i<numeroCaras; i++) {
+		if (modo) glBegin(GL_POLYGON);
+		else glBegin(GL_LINE_LOOP);
+		for (int j = 0; j<cara[i]->getNumeroVertices(); j++) {
+
+			int iN = cara[i]->getIndiceNormalK(j);
+			int iV = cara[i]->getIndiceVerticeK(j);
+			glNormal3f(normal[iN]->getX(), normal[iN]->getY(), normal[iN]->getZ());
+			glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
+			
+		}
+		glEnd();
+	}
 	glPopMatrix();
+	//glPopMatrix();
 }

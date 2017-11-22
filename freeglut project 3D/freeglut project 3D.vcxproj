@@ -67,12 +67,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cara.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="FireWorks.cpp" />
     <ClCompile Include="Fuego.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="Lib\MATH3D.CPP" />
     <ClCompile Include="LLuviaParticulas.cpp" />
+    <ClCompile Include="Malla.cpp" />
     <ClCompile Include="Objeto3D.cpp" />
     <ClCompile Include="particulas.cpp" />
     <ClCompile Include="main.cpp" />
@@ -83,14 +85,18 @@
     <ClCompile Include="Test2.cpp" />
     <ClCompile Include="Test3.cpp" />
     <ClCompile Include="Test4.cpp" />
+    <ClCompile Include="Test5.cpp" />
+    <ClCompile Include="VerticeNormal.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cara.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="FireWorks.h" />
     <ClInclude Include="Fuego.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="Lib\MATH3D.H" />
     <ClInclude Include="LLuviaParticulas.h" />
+    <ClInclude Include="Malla.h" />
     <ClInclude Include="Objeto3D.h" />
     <ClInclude Include="particulas.h" />
     <ClInclude Include="PuntoVector3D.h" />
@@ -101,6 +107,8 @@
     <ClInclude Include="Test2.h" />
     <ClInclude Include="Test3.h" />
     <ClInclude Include="Test4.h" />
+    <ClInclude Include="Test5.h" />
+    <ClInclude Include="VerticeNormal.h" />
     <ClInclude Include="world.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

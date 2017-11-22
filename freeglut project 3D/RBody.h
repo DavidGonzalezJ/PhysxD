@@ -2,15 +2,17 @@
 #include "Objeto3D.h"
 #include "Quaternion.h"
 #include <vector>
+#include "Malla.h"
 #include "Lib\MATH3D.H"
 
+
 class RBody :
-	public Objeto3D
+	public Malla
 {
 public:
 	RBody(float masa, float tam);
 	virtual ~RBody();
-	void update(float deltaTime, PuntoVector3D fuerzas = PuntoVector3D(0.0f, 9.81f, 0.0f, 0));
+	virtual void update(float deltaTime, PuntoVector3D fuerzas = PuntoVector3D(0.0f, -0.00001f, 0.0f, 0));
 	virtual void dibuja();
 private:
 	long float time; // tiempo desde que se creo el objeto
@@ -26,6 +28,8 @@ private:
 	PuntoVector3D* torque;
 	matrix_3x3 inverseWorldInertiaTensor;
 	matrix_3x3 inverseBodyInertiaTensor;
+
+	float tam_;
 
 
 	PuntoVector3D correctedPos;
