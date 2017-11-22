@@ -36,6 +36,7 @@ void Fuente::update(GLfloat dt)
 Objeto3D* Fuente::creaParticula()
 {
 	Objeto3D *p = new particulas(PuntoVector3D(0, 1, 0, 0),-9.81,150,100);
+
 	p->setColor(PuntoVector3D(0,0.3,0.6,1));
 	p->setVel(PuntoVector3D(world->dameRandom(10,-10), 50, world->dameRandom(10, -10), 1));
 	p->setWorld(world);

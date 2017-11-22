@@ -1,11 +1,14 @@
 #pragma once
 
-#include "PuntoVector3D.h"
 #include "world.h"
+#include "TAfin.h"
 class Objeto3D {
 
 public:
-	Objeto3D(){};
+	Objeto3D(){
+		mt = new TAfin();
+		color =  PuntoVector3D(0, 0, 0.5, 0);
+	};
 	~Objeto3D(){};
 	PuntoVector3D pos;
 	PuntoVector3D vel;
@@ -39,6 +42,8 @@ public:
 
 	virtual void reiniciar(){};
 	GLfloat vidaAct;
+	TAfin* mt;
+
 
 protected:
 	int size;
