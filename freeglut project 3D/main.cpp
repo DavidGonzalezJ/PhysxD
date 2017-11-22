@@ -14,7 +14,7 @@
 #include "Test2.h"
 #include "Test3.h"
 #include "Test4.h"
-
+#include "Test5.h"
 
 //#include <GL/glut.h>
 using namespace std;
@@ -33,7 +33,7 @@ bool pausa = false;
 GLdouble xRight=10, xLeft=-xRight, yTop=250, yBot=-30, N=1, F=2000;
 
 // Camera parameters
-GLdouble eyeX=0, eyeY=0, eyeZ=2000.0;
+GLdouble eyeX=0, eyeY=0, eyeZ=200;
 GLdouble lookX=0.0, lookY=10, lookZ=0.0;
 GLdouble upX=0, upY=1, upZ=0;
 
@@ -48,9 +48,10 @@ Test1 escena1;
 Test2 escena2;
 Test3 escena3;
 Test4 escena4;
+Test5* escena5;
 
-int numEscenas = 5;
-int CONT = 0;
+int numEscenas = 6;
+int CONT = 5;
 
 void buildSceneObjects() {	 
     angX=0.0f;
@@ -59,6 +60,7 @@ void buildSceneObjects() {
 	//creaParticulas(1000);
 	//escena.creaParticulas(1000);
 	//escena2.creaParticulas(1000);
+	escena5 = new Test5();
 
 
 }
@@ -137,6 +139,8 @@ void display(void) {
 		case 2: escena2.dibuja(); break;
 		case 3: escena3.dibuja(); break;
 		case 4: escena4.dibuja(); break;
+		case 5: escena5->dibuja(); break;
+
 
 		default:
 			break;

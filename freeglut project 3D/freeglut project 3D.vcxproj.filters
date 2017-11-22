@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Tests">
       <UniqueIdentifier>{0e619ebd-fea3-4b73-a57c-f3749882aa85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SistemasParticulas">
+      <UniqueIdentifier>{9857ad0b-5199-4d38-861e-c37b00535ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SistemasParticulas">
+      <UniqueIdentifier>{0ff28da6-26a7-4d6a-9fc4-357a369106f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,12 +39,6 @@
     <ClCompile Include="Objeto3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Fuego.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Fuente.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Test1.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
@@ -48,19 +48,34 @@
     <ClCompile Include="Test0.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
-    <ClCompile Include="LLuviaParticulas.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Explosion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Test3.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
-    <ClCompile Include="Test4.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Source Files\SistemasParticulas</Filter>
     </ClCompile>
     <ClCompile Include="FireWorks.cpp">
+      <Filter>Source Files\SistemasParticulas</Filter>
+    </ClCompile>
+    <ClCompile Include="Fuego.cpp">
+      <Filter>Source Files\SistemasParticulas</Filter>
+    </ClCompile>
+    <ClCompile Include="Fuente.cpp">
+      <Filter>Source Files\SistemasParticulas</Filter>
+    </ClCompile>
+    <ClCompile Include="LLuviaParticulas.cpp">
+      <Filter>Source Files\SistemasParticulas</Filter>
+    </ClCompile>
+    <ClCompile Include="Test4.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH3D.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TAfin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,12 +92,6 @@
     <ClInclude Include="Objeto3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Fuego.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Fuente.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Test1.h">
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
@@ -92,20 +101,41 @@
     <ClInclude Include="Test0.h">
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
-    <ClInclude Include="LLuviaParticulas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Explosion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Test3.h">
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
-    <ClInclude Include="Test4.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Explosion.h">
+      <Filter>Header Files\SistemasParticulas</Filter>
     </ClInclude>
     <ClInclude Include="FireWorks.h">
+      <Filter>Header Files\SistemasParticulas</Filter>
+    </ClInclude>
+    <ClInclude Include="Fuego.h">
+      <Filter>Header Files\SistemasParticulas</Filter>
+    </ClInclude>
+    <ClInclude Include="Fuente.h">
+      <Filter>Header Files\SistemasParticulas</Filter>
+    </ClInclude>
+    <ClInclude Include="LLuviaParticulas.h">
+      <Filter>Header Files\SistemasParticulas</Filter>
+    </ClInclude>
+    <ClInclude Include="Test4.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="MATH3D.H">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TAfin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test5.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="glm\CMakeLists.txt" />
   </ItemGroup>
 </Project>

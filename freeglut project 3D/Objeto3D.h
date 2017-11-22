@@ -1,4 +1,7 @@
-#pragma once
+#ifndef OBJETO3D_H
+
+
+#define OBJETO3D_H
 
 #include "PuntoVector3D.h"
 #include "world.h"
@@ -45,5 +48,6 @@ protected:
 	bool _activa = true;
 	bool _eliminar = false;
 };
+#endif
 
 

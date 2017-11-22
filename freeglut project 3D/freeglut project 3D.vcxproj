@@ -39,7 +39,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)\glm;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -72,10 +74,13 @@
     <ClCompile Include="Fuego.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="LLuviaParticulas.cpp" />
+    <ClCompile Include="MATH3D.CPP" />
     <ClCompile Include="Objeto3D.cpp" />
     <ClCompile Include="particulas.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PuntoVector3D.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="TAfin.cpp" />
     <ClCompile Include="Test0.cpp" />
     <ClCompile Include="Test1.cpp" />
     <ClCompile Include="Test2.cpp" />
@@ -88,15 +93,22 @@
     <ClInclude Include="Fuego.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="LLuviaParticulas.h" />
+    <ClInclude Include="MATH3D.H" />
     <ClInclude Include="Objeto3D.h" />
     <ClInclude Include="particulas.h" />
     <ClInclude Include="PuntoVector3D.h" />
+    <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="TAfin.h" />
     <ClInclude Include="Test0.h" />
     <ClInclude Include="Test1.h" />
     <ClInclude Include="Test2.h" />
     <ClInclude Include="Test3.h" />
     <ClInclude Include="Test4.h" />
+    <ClInclude Include="Test5.h" />
     <ClInclude Include="world.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="glm\CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

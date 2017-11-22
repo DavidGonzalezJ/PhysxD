@@ -1,11 +1,16 @@
-#pragma once
+#ifndef WORLD_H
+#define WORLD_H
+
 #include "PuntoVector3D.h"
 #include <math.h>
+#include "ListaObjetos.h"
 #define GRAVITY -9.81f
 class World 
 {
 public:
-	World() { gravity = PuntoVector3D(0, GRAVITY, 0, 1); };
+	World() { 
+		gravity = PuntoVector3D(0, GRAVITY, 0, 1); 
+	};
 	~World() {};
 	virtual PuntoVector3D getGravity(){ return gravity; };
 	virtual PuntoVector3D getWorldBox(){ return worldBox; };
@@ -29,3 +34,4 @@ private:
 	PuntoVector3D worldBox;
 };
 
+#endif // !WORLD_H
