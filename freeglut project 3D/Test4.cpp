@@ -25,6 +25,7 @@ void Test4::dibuja() {
 		_explosion->dibuja();
 
 		if (update || lastTimeUpdate + frecuencia <= ticks) {
+			lastTimeUpdate = ticks;
 			_explosion->update(ticks);
 			if (_explosion->getVidaAct() == 0){
 				posAux = _explosion->pos;

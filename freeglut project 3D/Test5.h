@@ -7,9 +7,12 @@ public:
 	Test5() {
 		for (size_t i = 0; i < 10; i++)
 		{
-			ejericito.push_back(new TeteraRigida(i*10, 0, 0, 1));
-			ejericito[i]->setForce({ 0,8*1000,0 });
-			ejericito[i]->setTorque({ 0,0.1,0 });
+			if(i%2==0)
+				ejericito.push_back(new TeteraRigida(i*10, 0, 0, 1));
+			else
+				ejericito.push_back(new Cono(i * 10, 0, 0, 1,4,5));
+			ejericito[i]->setForce({ 0,8 * 1000,0 }, 1/*, {-2.5,0,2.5}*/);
+			ejericito[i]->setTorque({ 9,9,0 },2);
 
 
 		}
@@ -32,7 +35,7 @@ public:
 	}
 
 private:
-	std::vector<TeteraRigida*> ejericito;
+	std::vector<RigidBody*> ejericito;
 	TeteraRigida * tetera;
 	GLfloat lastTimeUpdate = 0;
 	GLfloat frecuencia = 20;

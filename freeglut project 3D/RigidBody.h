@@ -47,15 +47,26 @@ public:
 		Fuerza += fuerza;
 		
 	}
-	virtual void setForce(glm::vec3 fuerza) {
+	virtual void setForce(glm::vec3 fuerza, float dt, glm::vec3 posFuerza = {0,0,0}) {
+		Fuerza = fuerza;
+		if (posFuerza.x == 0 && posFuerza.y == 0 && posFuerza.z == 0)
+			posFuerza = pos;
+		glm::vec3 dist = posFuerza - pos;
+		//TORQUE con respecto a la fuerza
+		glm::vec3 aux = { dist.y * fuerza.z - dist.z * fuerza.y, -dist.x*fuerza.z + dist.z*fuerza.x, dist.x*fuerza.y - dist.y* fuerza.x };
+		//Se le suma al inicial
+		torque += aux;
+		angMom = angMom + (dt * torque);
 		Fuerza = fuerza;
 	}
-	virtual void setTorque(glm::vec3 angulag) {
-		angMom = angulag;
+	virtual void setTorque(glm::vec3 angulag, float dt) {
+		torque += angulag;
+		angMom = angMom + (dt * torque);
 	}
 	~RigidBody() {
 
 	};
+	virtual void Render() = 0;
 	TAfin * mT;
 protected:
 	glm::mat4 cubeMatrix;//Matriu transposada
@@ -64,6 +75,8 @@ protected:
 	glm::mat3 iBody = { (mass * 2) / 12, 0, 0,
 		0, (mass * 2) / 12, 0,
 		0, 0, (mass * 2) / 12 };
+	//Cosas chungas de Wizu
+	glm::vec3 torque;
 	glm::mat4 rotMat;
 	glm::vec3 pos = { 0, 0, 0 };//Position vector (x)
 	glm::vec3 lVel;//Linear Velocity (v)
@@ -79,8 +92,7 @@ protected:
 	}
 
 	void updateAngularMomentum(float dt, float t[3]) {
-		glm::vec3 newTorque = { t[0], t[1], t[2] };
-		angMom = angMom + (dt * newTorque);
+		angMom = angMom + (dt * torque);
 	}
 
 	void updateVelocity() {
@@ -121,13 +133,39 @@ public:
 	~TeteraRigida() {
 
 	}
-	void Render() {
+	virtual void Render() {
 		glPushMatrix();
 		glMultMatrixf(mT->m);
+		//glutSolidTeapot(5);
 		glutSolidCube(5);
 		glPopMatrix();
 	}
 
 private:
 
+};
+
+//A falta de ajustar el torque
+class Cono : public RigidBody
+{
+public:
+	Cono(float x, float y, float z, GLfloat masa,GLfloat altura,GLfloat radio) :RigidBody(x, y, z, masa),h(altura),r(radio) {
+		iBody = { (3*(mass * std::pow(altura,2)/*Altura al cuadrado*/) / 5)+ 3 * (mass * std::pow(radio/*radio*/,2))/20, 0, 0,
+			0, (3 * (mass * std::pow(altura,2)/*Altura al cuadrado*/) / 5) + 3 * (mass * std::pow(radio/*radio*/,2)) / 20, 0,
+			0, 0, 3 * (mass * std::pow(radio/*radio*/,2)) / 10 };
+		pos = { x,y,z-h/4 };
+		/*this->mT->rota(&PuntoVector3D(0, 0, 1, 0), 90);*/
+	};
+	~Cono() {
+
+	}
+	virtual void Render() {
+		glPushMatrix();
+		glMultMatrixf(mT->m);
+		glutSolidCone(h, r, 20, 20);
+		glPopMatrix();
+	}
+
+private:
+	GLfloat h, r;
 };
