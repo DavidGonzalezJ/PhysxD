@@ -48,7 +48,7 @@ public:
 		
 	}
 	virtual void setForce(glm::vec3 fuerza, float dt, glm::vec3 posFuerza = {0,0,0}) {
-		Fuerza = fuerza;
+		Fuerza += fuerza;
 		if (posFuerza.x == 0 && posFuerza.y == 0 && posFuerza.z == 0)
 			posFuerza = pos;
 		glm::vec3 dist = posFuerza - pos;
@@ -57,7 +57,6 @@ public:
 		//Se le suma al inicial
 		torque += aux;
 		angMom = angMom + (dt * torque);
-		Fuerza = fuerza;
 	}
 	virtual void setTorque(glm::vec3 angulag, float dt) {
 		torque += angulag;
@@ -163,6 +162,29 @@ public:
 		glPushMatrix();
 		glMultMatrixf(mT->m);
 		glutSolidCone(h, r, 20, 20);
+		glPopMatrix();
+	}
+
+private:
+	GLfloat h, r;
+};
+
+class Cilindro : public RigidBody
+{
+public:
+	Cilindro(float x, float y, float z, GLfloat masa, GLfloat altura, GLfloat radio) :RigidBody(x, y, z, masa), h(altura), r(radio) {
+		iBody = { (1/12)*masa*(3*pow(radio,2)+pow(h,2)), 0, 0,
+			0, (1 / 12)*masa*(3 * pow(radio,2) + pow(h,2)), 0,
+			0, 0, (1 / 2)*masa*pow(radio,2) };
+		pos = { x,y+h/2,z};
+	};
+	~Cilindro() {
+
+	}
+	virtual void Render() {
+		glPushMatrix();
+		glMultMatrixf(mT->m);
+		glutSolidCylinder(h, r, 20, 20);
 		glPopMatrix();
 	}
 
