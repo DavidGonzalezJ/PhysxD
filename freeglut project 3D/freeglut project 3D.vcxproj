@@ -85,6 +85,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PuntoVector3D.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="SimulaColision2D.cpp" />
     <ClCompile Include="TAfin.cpp" />
     <ClCompile Include="Test0.cpp" />
     <ClCompile Include="Test1.cpp" />
@@ -92,6 +93,7 @@
     <ClCompile Include="Test3.cpp" />
     <ClCompile Include="Test4.cpp" />
     <ClCompile Include="Test5.cpp" />
+    <ClCompile Include="Test6.cpp" />
     <ClCompile Include="TiradorSolidos.cpp" />
     <ClCompile Include="VerticeNormal.cpp" />
   </ItemGroup>
@@ -109,6 +111,7 @@
     <ClInclude Include="particulas.h" />
     <ClInclude Include="PuntoVector3D.h" />
     <ClInclude Include="Rigidbody.h" />
+    <ClInclude Include="SimulaColision2D.h" />
     <ClInclude Include="TAfin.h" />
     <ClInclude Include="Test0.h" />
     <ClInclude Include="Test1.h" />
@@ -116,6 +119,7 @@
     <ClInclude Include="Test3.h" />
     <ClInclude Include="Test4.h" />
     <ClInclude Include="Test5.h" />
+    <ClInclude Include="Test6.h" />
     <ClInclude Include="TiradorSolidos.h" />
     <ClInclude Include="VerticeNormal.h" />
     <ClInclude Include="world.h" />

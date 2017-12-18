@@ -15,6 +15,7 @@
 #include "Test3.h"
 #include "Test4.h"
 #include "Test5.h"
+#include "Test6.h"
 
 
 //#include <GL/glut.h>
@@ -50,6 +51,7 @@ Test2 escena2;
 Test3 escena3;
 Test4 escena4;
 Test5 escena5;
+Test6 escena6;
 
 int numEscenas = 1;
 int CONT = 0;
@@ -134,7 +136,7 @@ void display(void) {
 
 		switch (CONT)
 		{
-		case 0: escena5.dibuja(); break;
+		case 0: escena6.dibuja(); break;
 		case 1: escena1.dibuja(); break;
 		case 2: escena2.dibuja(); break;
 		case 3: escena3.dibuja(); break;

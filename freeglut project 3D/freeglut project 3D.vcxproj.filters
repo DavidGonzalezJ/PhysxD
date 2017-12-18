@@ -90,6 +90,12 @@
     <ClCompile Include="CentroMasa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Test6.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulaColision2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PuntoVector3D.h">
@@ -159,6 +165,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CentroMasa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimulaColision2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
