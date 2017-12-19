@@ -86,6 +86,7 @@
     <ClCompile Include="Test2.cpp" />
     <ClCompile Include="Test3.cpp" />
     <ClCompile Include="Test4.cpp" />
+    <ClCompile Include="Test7.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Explosion.h" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Test3.h" />
     <ClInclude Include="Test4.h" />
     <ClInclude Include="Test5.h" />
+    <ClInclude Include="Test7.h" />
     <ClInclude Include="world.h" />
   </ItemGroup>
   <ItemGroup>

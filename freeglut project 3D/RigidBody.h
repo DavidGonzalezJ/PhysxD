@@ -191,3 +191,26 @@ public:
 private:
 	GLfloat h, r;
 };
+
+class Esfera : public RigidBody
+{
+public:
+	Esfera(float x, float y, float z, GLfloat masa, GLfloat radio) :RigidBody(x, y, z, masa), r(radio) {
+		iBody = { x, 0, 0,
+				0, y, 0,
+				0, 0, z };
+		pos = { x,y,z };
+	};
+	~Esfera() {
+
+	}
+	virtual void Render() {
+		glPushMatrix();
+		glMultMatrixf(mT->m);
+		glutSolidSphere(r, 24, 24);
+		glPopMatrix();
+	}
+
+private:
+	GLfloat h, r;
+};

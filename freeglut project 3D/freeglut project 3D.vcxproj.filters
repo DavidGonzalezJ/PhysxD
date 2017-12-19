@@ -78,6 +78,9 @@
     <ClCompile Include="TAfin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Test7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PuntoVector3D.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="Test5.h">
       <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Test7.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
