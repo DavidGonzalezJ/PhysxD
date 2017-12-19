@@ -195,11 +195,10 @@ private:
 class Esfera : public RigidBody
 {
 public:
-	Esfera(float x, float y, float z, GLfloat masa, GLfloat radio) :RigidBody(x, y, z, masa), r(radio) {
-		iBody = { x, 0, 0,
-				0, y, 0,
-				0, 0, z };
-		pos = { x,y,z };
+	Esfera(float x, float y, float z, GLfloat masa, GLfloat radio) :RigidBody(x, y, z, masa), h(radio), r(radio) {
+		
+		pos = { x, y, z  };
+		/*this->mT->rota(&PuntoVector3D(0, 0, 1, 0), 90);*/
 	};
 	~Esfera() {
 

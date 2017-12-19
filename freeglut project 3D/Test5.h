@@ -10,7 +10,7 @@ public:
 			if(i%2==0)
 				ejericito.push_back(new TeteraRigida(i*10, 0, 0, 1));
 			else
-				ejericito.push_back(new Cono(i * 10, 0, 0, 1,4,5));
+				ejericito.push_back(new Esfera(i * 10, 0, 0,4,5));
 			ejericito[i]->setForce({ 0,8 * 1000,0 }, 1/*, {-2.5,0,2.5}*/);
 			ejericito[i]->setTorque({ 9,9,0 },2);
 

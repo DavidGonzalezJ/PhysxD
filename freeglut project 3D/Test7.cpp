@@ -6,7 +6,7 @@ Test7::Test7()
 {
 	for (size_t i = 0; i < 2; i++)
 	{
-		ejericito.push_back(new Esfera(0,0,0,5,20));
+		ejericito.push_back(new Esfera(i * 10, 0, 0, 4, 5));
 	//	ejericito[i]->setForce({ 0,8 * 1000,0 }, 1/*, {-2.5,0,2.5}*/);
 	}
 }
