@@ -1,13 +1,14 @@
 #include "Test7.h"
-
+#include <iostream>
 
 
 Test7::Test7()
 {
 	for (size_t i = 0; i < 2; i++)
 	{
-		ejericito.push_back(new Esfera(i * 10, 0, 0, 4, 5));
-	//	ejericito[i]->setForce({ 0,8 * 1000,0 }, 1/*, {-2.5,0,2.5}*/);
+		ejericito.push_back(new Esfera(i * 8, 0, 0, 2, 5));
+		if (i == 0)ejericito[i]->setForce({ 2000,8 * 1000,0 }, 1/*, {-2.5,0,2.5}*/);
+		else ejericito[i]->setForce({ -2000, 8 * 1000, 0 }, 1/*, {-2.5,0,2.5}*/);
 	}
 }
 
@@ -21,6 +22,30 @@ void Test7::dibuja() {
 		for (size_t i = 0; i < 2; i++)
 		{
 			ejericito[i]->Update(ticks);
+
+			for (size_t j = 0; j < 2; j++){
+				if (j != i){
+					PuntoVector3D *s = &ejericito[i]->mT->getPos();
+					PuntoVector3D *s2 = &ejericito[j]->mT->getPos();
+					s2->escalar(-1);
+
+					s->sumar(s2);
+					float squareLength = (s->getX() * s->getX()) + (s->getY() * s->getY()) + (s->getZ() * s->getZ());
+
+
+					
+					if (squareLength <= 50){ //25 por que es el cuadrado de los radios 
+						std::cout << "choque\n";
+						ejericito[i]->setColour(1,0,0);
+						ejericito[j]->setColour(1, 0, 0);
+					}
+					else {
+						ejericito[i]->setColour(1, 1, 1);
+						ejericito[i]->setColour(1, 1, 1);
+					}
+				}
+			}
+			
 		}
 	}
 	for (size_t i = 0; i < 2; i++)

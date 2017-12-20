@@ -14,6 +14,13 @@ public:
 		mT = new TAfin();
 		mT->traslada({ x,y,z,0 });
 	}
+	void setColour (float r, float g, float b){
+
+		this->r = r;
+		this->g = g;
+		this->b = b;
+	};
+	float r, g, b;
 	virtual void Update(float dt) {
 		//TODO
 		dt = 1.0f / 120.0f;
@@ -205,6 +212,7 @@ public:
 	}
 	virtual void Render() {
 		glPushMatrix();
+		glColor3f(r,g,b);
 		glMultMatrixf(mT->m);
 		glutSolidSphere(r, 24, 24);
 		glPopMatrix();
