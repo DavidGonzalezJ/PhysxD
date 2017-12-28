@@ -89,11 +89,14 @@
     <ClCompile Include="Test7.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cara.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="FireWorks.h" />
     <ClInclude Include="Fuego.h" />
     <ClInclude Include="Fuente.h" />
+    <ClInclude Include="LectorObj.h" />
     <ClInclude Include="LLuviaParticulas.h" />
+    <ClInclude Include="Malla.h" />
     <ClInclude Include="MATH3D.H" />
     <ClInclude Include="Objeto3D.h" />
     <ClInclude Include="particulas.h" />
@@ -107,6 +110,7 @@
     <ClInclude Include="Test4.h" />
     <ClInclude Include="Test5.h" />
     <ClInclude Include="Test7.h" />
+    <ClInclude Include="VerticeNormal.h" />
     <ClInclude Include="world.h" />
   </ItemGroup>
   <ItemGroup>

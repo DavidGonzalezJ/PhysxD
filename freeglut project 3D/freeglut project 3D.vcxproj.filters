@@ -140,6 +140,18 @@
     <ClInclude Include="Test7.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LectorObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Malla.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cara.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VerticeNormal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="glm\CMakeLists.txt" />

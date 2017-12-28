@@ -1,9 +1,16 @@
 #include "Test7.h"
 #include <iostream>
+#include "LectorObj.h"
 
 
 Test7::Test7()
 {
+	std::vector< glm::vec3 >* vertices	= new std::vector< glm::vec3 >;
+	std::vector< glm::vec2 >* uvs		= new std::vector< glm::vec2 >;
+	std::vector< glm::vec3 >* normals	= new std::vector< glm::vec3 >;
+	std::vector<Cara>*	caras			= new std::vector< Cara >;
+	loadOBJ("box.obj",* vertices, *uvs, *normals,*caras);
+	kekubo = Malla(vertices, normals, caras);
 	for (size_t i = 0; i < 2; i++)
 	{
 		ejericito.push_back(new Esfera(i * 40, 0, 0, 2, 5));
@@ -17,6 +24,7 @@ Test7::~Test7()
 void Test7::dibuja() {
 	GLfloat ticks = glutGet(GLUT_ELAPSED_TIME);
 	if (lastTimeUpdate + frecuencia <= ticks) {
+		kekubo.dibuja();
 		for (size_t i = 0; i < 2; i++)
 		{
 
