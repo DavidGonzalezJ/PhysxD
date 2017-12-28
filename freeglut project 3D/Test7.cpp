@@ -19,7 +19,6 @@ void Test7::dibuja() {
 	if (lastTimeUpdate + frecuencia <= ticks) {
 		for (size_t i = 0; i < 2; i++)
 		{
-			ejericito[i]->Update(ticks);
 
 			for (size_t j = 0; j < 2; j++){
 				if (j != i){
@@ -33,6 +32,7 @@ void Test7::dibuja() {
 					if (squareLength <= 100){ 
 						std::cout << "choque\n";
 						ejericito[i]->setColour(1,0,0);
+						ejericito[i]->applyForce(ejericito[i]->getForce());
 						ejericito[j]->setColour(1, 0, 0);
 					}
 					else {
@@ -42,6 +42,7 @@ void Test7::dibuja() {
 				}
 			}
 			
+			ejericito[i]->Update(ticks);
 		}
 	}
 	for (size_t i = 0; i < 2; i++)

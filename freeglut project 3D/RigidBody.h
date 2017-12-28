@@ -52,11 +52,14 @@ public:
 	}
 	virtual void applyForce(glm::vec3 fuerza) {
 		Fuerza += fuerza;
-		
+	}
+	virtual glm::vec3 getForce() {
+		return Fuerza;
 	}
 	virtual void inverseForce(char aux){
 		if (aux == 'x')	Fuerza.x *= -1;  
 	}
+	
 	virtual void setForce(glm::vec3 fuerza, float dt, glm::vec3 posFuerza = {0,0,0}) {
 		Fuerza += fuerza;
 		if (posFuerza.x == 0 && posFuerza.y == 0 && posFuerza.z == 0)
