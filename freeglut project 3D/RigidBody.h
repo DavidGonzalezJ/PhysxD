@@ -4,7 +4,7 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/quaternion.hpp>
-
+#include <glm-aabb\aabb.hpp>
 class RigidBody
 {
 public:
@@ -13,6 +13,7 @@ public:
 		pos = { x,y,z };
 		mT = new TAfin();
 		mT->traslada({ x,y,z,0 });
+		collider = CPM_GLM_AABB_NS::AABB();
 	}
 	void setColour (float r, float g, float b){
 
@@ -24,7 +25,7 @@ public:
 	virtual void Update(float dt) {
 		//TODO
 		dt = 1.0f / 120.0f;
-		Fuerza += peso;
+		Fuerza += 0;
 	
 		updateLinearMomentum(dt);
 
@@ -47,14 +48,25 @@ public:
 
 		}
 		timer += dt;
+		oldFuerza = Fuerza;
 		Fuerza *= 0;
 		
 	}
-	virtual void applyForce(glm::vec3 fuerza) {
+	virtual void applyForce(glm::vec3 fuerza, glm::vec3 posFuerza = { 0,0,0 }) {
 		Fuerza += fuerza;
+		if (posFuerza.x == 0 && posFuerza.y == 0 && posFuerza.z == 0)
+			posFuerza = pos;
+		glm::vec3 dist = posFuerza - pos;
+		//TORQUE con respecto a la fuerza
+		glm::vec3 aux = { dist.y * fuerza.z - dist.z * fuerza.y, -dist.x*fuerza.z + dist.z*fuerza.x, dist.x*fuerza.y - dist.y* fuerza.x };
+		//Se le suma al inicial
+		torque += aux;
 	}
 	virtual glm::vec3 getForce() {
-		return Fuerza;
+		return oldFuerza;
+	}
+	virtual glm::vec3 getLinearMomentum() {
+		return linMom;
 	}
 	virtual void inverseForce(char aux){
 		if (aux == 'x')	Fuerza.x *= -1;  
@@ -75,11 +87,19 @@ public:
 		torque += angulag;
 		angMom = angMom + (dt * torque);
 	}
+	virtual void applyMomentum(glm::vec3 momentum) {
+		linMom += momentum;
+	}
+	virtual void setMomentum(glm::vec3 momentum) {
+		linMom = momentum;
+	}
 	~RigidBody() {
 
 	};
 	virtual void Render() = 0;
 	TAfin * mT;
+	CPM_GLM_AABB_NS::AABB collider;
+
 protected:
 	glm::mat4 cubeMatrix;//Matriu transposada
 	float timer = 0;
@@ -97,8 +117,10 @@ protected:
 	glm::vec3 linMom;//Linear Momentum (P)
 	glm::vec3 angMom;//Angular Momentum (L)
 	glm::mat3 inertia; //(I)
-	glm::vec3 peso = {0,-9.81*mass,0};
+	glm::vec3 peso = {0,-9.81*mass*0,0};
 	glm::vec3 Fuerza;
+	glm::vec3 oldFuerza;
+
 	void updateLinearMomentum(float dt) {
 		linMom = linMom + (dt * Fuerza);
 	}
@@ -113,6 +135,7 @@ protected:
 
 	void updatePosition(float dt) {
 		pos = pos + (dt * lVel);
+		collider.translate((dt * lVel));
 		if (pos[1] <= 0) pos[1] = 0;
 	}
 
@@ -131,7 +154,6 @@ protected:
 	}
 
 
-
 	
 
 };
@@ -140,7 +162,7 @@ class TeteraRigida: public RigidBody
 {
 public:
 	TeteraRigida(float x, float y, float z, GLfloat masa):RigidBody(x, y, z, masa){
-
+		collider = CPM_GLM_AABB_NS::AABB(pos, 5);
 	};
 	~TeteraRigida() {
 
@@ -149,7 +171,7 @@ public:
 		glPushMatrix();
 		glMultMatrixf(mT->m);
 		//glutSolidTeapot(5);
-		glutSolidCube(5);
+		glutSolidCube(10);
 		glPopMatrix();
 	}
 
@@ -212,6 +234,7 @@ public:
 		
 		pos = { x, y, z  };
 		/*this->mT->rota(&PuntoVector3D(0, 0, 1, 0), 90);*/
+		collider= CPM_GLM_AABB_NS::AABB(pos, radio);
 	};
 	~Esfera() {
 
