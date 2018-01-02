@@ -132,11 +132,26 @@ public:
   void scale(const glm::vec3& scale, const glm::vec3& origin);
 
   /// Retrieves the center of the AABB.
-  glm::vec3 getCenter() const;
+  glm::vec3 getCenter() const {
+	  if (!isNull())
+	  {
+		  glm::vec3 d = getDiagonal();
+		  return mMin + (d * glm::float_t(0.5));
+	  }
+	  else
+	  {
+		  return glm::vec3(0.0);
+	  }
+  }
 
   /// Retrieves the diagonal vector (computed as mMax - mMin).
   /// If the AABB is NULL, then a vector of all zeros is returned.
-  glm::vec3 getDiagonal() const;
+  glm::vec3 getDiagonal() const {
+	  if (!isNull())
+		  return mMax - mMin;
+	  else
+		  return glm::vec3(0);
+  }
 
   /// Retrieves the longest edge.
   /// If the AABB is NULL, then 0 is returned.
@@ -167,18 +182,51 @@ public:
 
 	  return true;
   }
-  bool collision(const AABB& bb) const {
+  bool collision(const AABB& bb, glm::vec3 & intersection) const {
 	  if (isNull() || bb.isNull())
 		  return false;
 
-	  if ((bb.mMin.x <= mMax.x&&bb.mMax.x > mMin.x)&&(bb.mMax.y >= mMin.y&&bb.mMin.y < mMax.y)) {
-		  return true;
-	  }
-	  if ((bb.mMin.x <= mMax.x&&bb.mMax.x > mMin.x) && (bb.mMax.y >= mMin.y&&bb.mMin.y < mMax.y)) {
-		  return true;
-	  }
+	  if (bb.mMin.x > mMax.x || bb.mMax.x < mMin.x)
+		  return false;
+	  else if (bb.mMin.y > mMax.y || bb.mMax.y < mMin.y)
+		  return false;
+	  else if (bb.mMin.z > mMax.z || bb.mMax.z < mMin.z)
+		  return false;
+	  real Amin, Bmin, Amax, Bmax;
+	  AABB aux;
+
+
+	  Amin = mMin.x; Amax = mMax.x;
+	  Bmin = bb.mMin.x; Bmax = bb.mMax.x;
+	  if (Bmin > Amin)
+		  Amin = Bmin;
+	  aux.mMin.x = Amin;
+	  if (Bmax < Amax)
+		  Amax = Bmax;
+	  aux.mMax.x = Amax;
 	  
-	  return false;
+
+	  Amin = mMin.y; Amax = mMax.y;
+	  Bmin = bb.mMin.y; Bmax = bb.mMax.y;
+	  if (Bmin > Amin)
+		  Amin = Bmin;
+	  aux.mMin.y = Amin;
+	  if (Bmax < Amax)
+		  Amax = Bmax;
+	  aux.mMax.y = Amax;
+
+	  Amin = mMin.z; Amax = mMax.z;
+	  Bmin = bb.mMin.z; Bmax = bb.mMax.z;
+	  if (Bmin > Amin)
+		  Amin = Bmin;
+	  aux.mMin.z= Amin;
+	  if (Bmax < Amax)
+		  Amax = Bmax;
+	  aux.mMax.z = Amax;
+	  
+	  intersection = aux.getCenter();
+
+	  return true;
   }
 
   /// Type returned from call to intersect.

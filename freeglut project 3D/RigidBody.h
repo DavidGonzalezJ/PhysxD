@@ -93,6 +93,9 @@ public:
 	virtual void setMomentum(glm::vec3 momentum) {
 		linMom = momentum;
 	}
+	virtual glm::vec3 getPos() {
+		return pos;
+	}
 	~RigidBody() {
 
 	};
