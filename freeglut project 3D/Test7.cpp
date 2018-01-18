@@ -9,7 +9,7 @@ Test7::Test7()
 	std::vector< glm::vec2 >* uvs		= new std::vector< glm::vec2 >;
 	std::vector< glm::vec3 >* normals	= new std::vector< glm::vec3 >;
 	std::vector<Cara>*	caras			= new std::vector< Cara >;
-	loadOBJ("box.obj",* vertices, *uvs, *normals,*caras);
+	loadOBJ("bb82.obj",* vertices, *uvs, *normals,*caras);
 	kekubo = Malla(vertices, normals, caras);
 	for (size_t i = 0; i < 2; i++)
 	{
@@ -60,4 +60,5 @@ void Test7::dibuja() {
 	{
 		ejericito[i]->Render();
 	}
+	kekubo.dibuja();
 }

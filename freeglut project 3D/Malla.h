@@ -4,7 +4,7 @@
 
 #include "PuntoVector3D.h"
 #include "Cara.h"
-#include <glm.hpp>
+#include "glm\glm.hpp"
 #include <vector>
 
 class Malla {	 

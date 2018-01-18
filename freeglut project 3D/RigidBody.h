@@ -1,10 +1,10 @@
 #pragma once
 #include "TAfin.h"
 #include "MATH3D.H"
-#include <glm.hpp>
-#include <gtc/matrix_transform.hpp>
-#include <gtc/quaternion.hpp>
-#include <glm-aabb\aabb.hpp>
+#include "glm\glm.hpp"
+#include "glm\gtc\matrix_transform.hpp"
+#include "glm\gtc\quaternion.hpp"
+#include "glm\glm-aabb\aabb.hpp"
 class RigidBody
 {
 public:

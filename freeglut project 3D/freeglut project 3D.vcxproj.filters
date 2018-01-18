@@ -25,6 +25,9 @@
     <Filter Include="Header Files\SistemasParticulas">
       <UniqueIdentifier>{0ff28da6-26a7-4d6a-9fc4-357a369106f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Obj">
+      <UniqueIdentifier>{b93b4b5b-6be1-49a8-8ca7-ac74ab77eea3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

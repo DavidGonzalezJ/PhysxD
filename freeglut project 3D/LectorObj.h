@@ -1,6 +1,7 @@
 #pragma once
-#include <glm.hpp>
+#include "glm\glm.hpp"
 #include <vector>
+#include "stdio.h"
 #include "Cara.h"
 using namespace glm;
 using namespace std;
@@ -10,6 +11,10 @@ bool loadOBJ(const char * path,  vector<vec3>& out_vertices, vector<vec2>& out_u
 	std::vector< glm::vec2 > temp_uvs;
 	std::vector< glm::vec3 > temp_normals;
 	FILE * file = fopen(path, "r");
+	if (file == NULL) {
+		printf("Mis ganas de vivir");
+		return false;
+	}
 	while (1) {
 
 		char lineHeader[128];
