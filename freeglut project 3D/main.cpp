@@ -34,8 +34,8 @@ bool pausa = false;
 GLdouble xRight=10, xLeft=-xRight, yTop=250, yBot=-30, N=1, F=2000;
 
 // Camera parameters
-GLdouble eyeX=0, eyeY=0, eyeZ=200;
-GLdouble lookX=0.0, lookY=10, lookZ=0.0;
+GLdouble eyeX=200, eyeY=100, eyeZ=200;
+GLdouble lookX=0.0, lookY=0.0, lookZ=0.0;
 GLdouble upX=0, upY=1, upZ=0;
 
 // Scene variables
@@ -47,10 +47,11 @@ GLfloat lastUpdate = 0;
 Test0 escena0;
 Test1 escena1;
 Test2 escena2;
-Test3 escena3;
+//Test3 escena3;
 Test4 escena4;
 Test7 escena6;
 Test5* escena5;
+
 
 int numEscenas = 1;
 int CONT = 0;
@@ -68,7 +69,7 @@ void buildSceneObjects() {
 }
 
 void initGL() {	 		 
-	glClearColor(0,0,0,1.0);
+	glClearColor(0,0.2,0.4,1.0);
       
 	glEnable(GL_COLOR_MATERIAL);
 	glMaterialf(GL_FRONT, GL_SHININESS, 0.9f);
@@ -139,7 +140,7 @@ void display(void) {
 		case 0: escena6.dibuja(); break;
 		case 1: escena1.dibuja(); break;
 		case 2: escena2.dibuja(); break;
-		case 3: escena3.dibuja(); break;
+		case 3: escena2.dibuja(); break;
 		case 4: escena4.dibuja(); break;
 		case 5: escena5->dibuja(); break;
 
@@ -148,7 +149,8 @@ void display(void) {
 			break;
 		}
 		//dibujaParticulas();
-		
+		angY += 0.05f;
+
 		
 		//escena2.dibuja();
 //		glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
@@ -204,6 +206,8 @@ void key(unsigned char key, int x, int y){
 		case 'c': angZ=angZ-5; break; 
 		case 9: CONT++; CONT%=numEscenas; break;
 		case 'p': pausa = !pausa; break; //parar el movimiento
+		case ' ': escena6.lanzaProyectil(); break;
+		case 'l': escena6.apagaFuego(); break;
 			
 	}
 

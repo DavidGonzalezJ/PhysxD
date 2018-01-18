@@ -7,6 +7,7 @@
 #include "glm\glm.hpp"
 #include <vector>
 
+
 class Malla {	 
     protected:
         int numeroVertices;
@@ -24,6 +25,7 @@ class Malla {
 			normales = n;
 			numeroCaras = c->size();
 			cara = c;
+			
 		}
 		Malla() {}
 		~Malla() {

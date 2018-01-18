@@ -22,10 +22,12 @@ public:
 		this->b = b;
 	};
 	float r, g, b;
+	bool dormido = false;
+
 	virtual void Update(float dt) {
 		//TODO
-		dt = 1.0f / 120.0f;
-		Fuerza += 0;
+		dt = 1.0f / 60.0f;
+		Fuerza += peso;
 	
 		updateLinearMomentum(dt);
 
@@ -120,7 +122,7 @@ protected:
 	glm::vec3 linMom;//Linear Momentum (P)
 	glm::vec3 angMom;//Angular Momentum (L)
 	glm::mat3 inertia; //(I)
-	glm::vec3 peso = {0,-9.81*mass*0,0};
+	glm::vec3 peso = {0,-9.81*mass,0};
 	glm::vec3 Fuerza;
 	glm::vec3 oldFuerza;
 
@@ -174,11 +176,12 @@ public:
 		glPushMatrix();
 		glMultMatrixf(mT->m);
 		//glutSolidTeapot(5);
-		glutSolidCube(10);
+		glutSolidCube(3);
 		glPopMatrix();
 	}
 
 private:
+	
 
 };
 

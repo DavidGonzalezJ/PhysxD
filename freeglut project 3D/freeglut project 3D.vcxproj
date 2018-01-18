@@ -72,6 +72,7 @@
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="FireWorks.cpp" />
     <ClCompile Include="Fuego.cpp" />
+    <ClCompile Include="fuego2.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="LLuviaParticulas.cpp" />
     <ClCompile Include="MATH3D.CPP" />
@@ -93,6 +94,7 @@
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="FireWorks.h" />
     <ClInclude Include="Fuego.h" />
+    <ClInclude Include="fuego2.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="LectorObj.h" />
     <ClInclude Include="LLuviaParticulas.h" />

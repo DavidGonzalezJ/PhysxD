@@ -6,7 +6,7 @@
 class Test3
 {
 public:
-	Test3();
+	Test3(PuntoVector3D * pos);
 	~Test3();
 	void creaParticulas(int num);
 	void dibuja();

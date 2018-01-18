@@ -84,6 +84,9 @@
     <ClCompile Include="Test7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fuego2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PuntoVector3D.h">
@@ -153,6 +156,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VerticeNormal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fuego2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,7 @@
 
 Explosion::Explosion(PuntoVector3D posi) 
 {
-	vidaAct = 1;
+	vidaAct = 5;
 	pos = posi;
 	reiniciar();
 }
